@@ -11,26 +11,29 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Private properties -
     
-    private lazy var tableView: UITableView = {
+    private lazy var collectionView: UICollectionView = {
         $0.dataSource = self
+        $0.backgroundColor = .green
         return $0
-    }(UITableView())
+    }(UICollectionView())
     
     // MARK: - Lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupConstrains()
     }
     
     // MARK: - Private methods -
     
     private func setupConstrains() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
@@ -38,18 +41,18 @@ final class HomeViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension HomeViewController: UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
     ) -> Int {
-        return 2
+        return .zero
     }
     
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        <#code#>
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        return UICollectionViewCell()
     }
 }
