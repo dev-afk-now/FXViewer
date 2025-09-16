@@ -8,22 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */; };
-		1180FC552D9AE0640044CD7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC542D9AE0640044CD7C /* Assets.xcassets */; };
 		1180FC582D9AE0640044CD7C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC572D9AE0640044CD7C /* Base */; };
 		1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC622D9AE53A0044CD7C /* HomeViewController.swift */; };
-		1180FC6A2DA733380044CD7C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC692DA733380044CD7C /* HomeCollectionViewCell.swift */; };
-		1180FC6D2DBF0C180044CD7C /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC6C2DBF0C180044CD7C /* CurrencyModel.swift */; };
+		1180FC6A2DA733380044CD7C /* CurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC692DA733380044CD7C /* CurrencyCollectionViewCell.swift */; };
+		1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC6C2DBF0C180044CD7C /* CurrencyNetworkModel.swift */; };
+		1180FC6F2DC88A590044CD7C /* CollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC6E2DC88A590044CD7C /* CollectionAdapter.swift */; };
+		11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */; };
+		11F78B212E79CC100073F0CD /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B202E79CC0E0073F0CD /* Reusable.swift */; };
+		11F78B242E79F2320073F0CD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F78B232E79F2320073F0CD /* Colors.xcassets */; };
+		11F78B262E79F2440073F0CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F78B252E79F2440073F0CD /* Images.xcassets */; };
+		11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B272E79F5C70073F0CD /* UIColor+AppColor.swift */; };
+		11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B292E79F7420073F0CD /* Configurable.swift */; };
+		11F78B2E2E79F8740073F0CD /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */; };
+		11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B2F2E79FAE50073F0CD /* String+Empty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1180FC482D9AE0610044CD7C /* FXViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FXViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1180FC542D9AE0640044CD7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1180FC572D9AE0640044CD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1180FC592D9AE0640044CD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1180FC622D9AE53A0044CD7C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		1180FC692DA733380044CD7C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
-		1180FC6C2DBF0C180044CD7C /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		1180FC692DA733380044CD7C /* CurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
+		1180FC6C2DBF0C180044CD7C /* CurrencyNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyNetworkModel.swift; sourceTree = "<group>"; };
+		1180FC6E2DC88A590044CD7C /* CollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionAdapter.swift; sourceTree = "<group>"; };
+		11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+register.swift"; sourceTree = "<group>"; };
+		11F78B202E79CC0E0073F0CD /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		11F78B232E79F2320073F0CD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		11F78B252E79F2440073F0CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		11F78B272E79F5C70073F0CD /* UIColor+AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColor.swift"; sourceTree = "<group>"; };
+		11F78B292E79F7420073F0CD /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
+		11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		11F78B2F2E79FAE50073F0CD /* String+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Empty.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +72,12 @@
 		1180FC4A2D9AE0610044CD7C /* FXViewer */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B222E79F2050073F0CD /* Resources */,
+				11F78B1F2E79CC080073F0CD /* Tools */,
+				11F78B1C2E79CBC30073F0CD /* Extensions */,
 				1180FC6B2DBF0C000044CD7C /* Models */,
 				1180FC602D9AE4F30044CD7C /* Modules */,
 				1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */,
-				1180FC542D9AE0640044CD7C /* Assets.xcassets */,
 				1180FC562D9AE0640044CD7C /* LaunchScreen.storyboard */,
 				1180FC592D9AE0640044CD7C /* Info.plist */,
 			);
@@ -69,8 +87,10 @@
 		1180FC5F2D9AE4E70044CD7C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B2B2E79F7D80073F0CD /* New Group */,
 				1180FC642D9AE9100044CD7C /* Cell */,
 				1180FC622D9AE53A0044CD7C /* HomeViewController.swift */,
+				1180FC6E2DC88A590044CD7C /* CollectionAdapter.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -78,6 +98,7 @@
 		1180FC602D9AE4F30044CD7C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B2C2E79F85B0073F0CD /* Models */,
 				1180FC612D9AE4FF0044CD7C /* Favorites */,
 				1180FC5F2D9AE4E70044CD7C /* Home */,
 			);
@@ -94,7 +115,7 @@
 		1180FC642D9AE9100044CD7C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				1180FC692DA733380044CD7C /* HomeCollectionViewCell.swift */,
+				1180FC692DA733380044CD7C /* CurrencyCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -102,7 +123,50 @@
 		1180FC6B2DBF0C000044CD7C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1180FC6C2DBF0C180044CD7C /* CurrencyModel.swift */,
+				1180FC6C2DBF0C180044CD7C /* CurrencyNetworkModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		11F78B1C2E79CBC30073F0CD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B2F2E79FAE50073F0CD /* String+Empty.swift */,
+				11F78B272E79F5C70073F0CD /* UIColor+AppColor.swift */,
+				11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		11F78B1F2E79CC080073F0CD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B292E79F7420073F0CD /* Configurable.swift */,
+				11F78B202E79CC0E0073F0CD /* Reusable.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		11F78B222E79F2050073F0CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B232E79F2320073F0CD /* Colors.xcassets */,
+				11F78B252E79F2440073F0CD /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		11F78B2B2E79F7D80073F0CD /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		11F78B2C2E79F85B0073F0CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,7 +229,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1180FC552D9AE0640044CD7C /* Assets.xcassets in Resources */,
+				11F78B242E79F2320073F0CD /* Colors.xcassets in Resources */,
+				11F78B262E79F2440073F0CD /* Images.xcassets in Resources */,
 				1180FC582D9AE0640044CD7C /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,10 +242,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F78B2E2E79F8740073F0CD /* CurrencyModel.swift in Sources */,
+				1180FC6F2DC88A590044CD7C /* CollectionAdapter.swift in Sources */,
+				11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */,
 				1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */,
 				1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */,
-				1180FC6D2DBF0C180044CD7C /* CurrencyModel.swift in Sources */,
-				1180FC6A2DA733380044CD7C /* HomeCollectionViewCell.swift in Sources */,
+				11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */,
+				1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */,
+				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,
+				11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */,
+				1180FC6A2DA733380044CD7C /* CurrencyCollectionViewCell.swift in Sources */,
+				11F78B212E79CC100073F0CD /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

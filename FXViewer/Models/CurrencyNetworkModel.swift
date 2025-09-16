@@ -1,5 +1,5 @@
 //
-//  CurrencyModel.swift
+//  CurrencyNetworkModel.swift
 //  FXViewer
 //
 //  Created by Nik Dub on 28.04.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CurrencyModel: Codable {
+struct CurrencyNetworkModel: Codable {
     let baseCurrency: String
     let quoteCurrency: String
     let quote: Double
