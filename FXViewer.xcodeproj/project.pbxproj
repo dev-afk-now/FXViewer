@@ -21,6 +21,15 @@
 		11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B292E79F7420073F0CD /* Configurable.swift */; };
 		11F78B2E2E79F8740073F0CD /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */; };
 		11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B2F2E79FAE50073F0CD /* String+Empty.swift */; };
+		11F78B372E7AE3EB0073F0CD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B362E7AE3E50073F0CD /* Coordinator.swift */; };
+		11F78B392E7AE4020073F0CD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B382E7AE3FE0073F0CD /* AppCoordinator.swift */; };
+		11F78B3B2E7AE42B0073F0CD /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B3A2E7AE4270073F0CD /* HomeCoordinator.swift */; };
+		11F78B3D2E7AE4500073F0CD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B3C2E7AE44D0073F0CD /* HomeViewModel.swift */; };
+		11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B3F2E7AE50A0073F0CD /* ViewModel.swift */; };
+		11F78B422E7AE51A0073F0CD /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B412E7AE5120073F0CD /* ViewModelState.swift */; };
+		11F78B442E7B427C0073F0CD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B432E7B42780073F0CD /* GradientView.swift */; };
+		11F78B462E7B601D0073F0CD /* UIView+Shimmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B452E7B60160073F0CD /* UIView+Shimmer.swift */; };
+		11F78B482E7B61990073F0CD /* CurrencyShimmerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B472E7B618C0073F0CD /* CurrencyShimmerCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,15 @@
 		11F78B292E79F7420073F0CD /* Configurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		11F78B2F2E79FAE50073F0CD /* String+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Empty.swift"; sourceTree = "<group>"; };
+		11F78B362E7AE3E50073F0CD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		11F78B382E7AE3FE0073F0CD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		11F78B3A2E7AE4270073F0CD /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		11F78B3C2E7AE44D0073F0CD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		11F78B3F2E7AE50A0073F0CD /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		11F78B412E7AE5120073F0CD /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
+		11F78B432E7B42780073F0CD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		11F78B452E7B60160073F0CD /* UIView+Shimmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmer.swift"; sourceTree = "<group>"; };
+		11F78B472E7B618C0073F0CD /* CurrencyShimmerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyShimmerCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +90,8 @@
 		1180FC4A2D9AE0610044CD7C /* FXViewer */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B3E2E7AE5030073F0CD /* Base */,
+				11F78B312E7AE3A30073F0CD /* Navigation */,
 				11F78B222E79F2050073F0CD /* Resources */,
 				11F78B1F2E79CC080073F0CD /* Tools */,
 				11F78B1C2E79CBC30073F0CD /* Extensions */,
@@ -87,6 +107,8 @@
 		1180FC5F2D9AE4E70044CD7C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B3C2E7AE44D0073F0CD /* HomeViewModel.swift */,
+				11F78B3A2E7AE4270073F0CD /* HomeCoordinator.swift */,
 				11F78B2B2E79F7D80073F0CD /* New Group */,
 				1180FC642D9AE9100044CD7C /* Cell */,
 				1180FC622D9AE53A0044CD7C /* HomeViewController.swift */,
@@ -115,6 +137,7 @@
 		1180FC642D9AE9100044CD7C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B472E7B618C0073F0CD /* CurrencyShimmerCollectionViewCell.swift */,
 				1180FC692DA733380044CD7C /* CurrencyCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -131,6 +154,7 @@
 		11F78B1C2E79CBC30073F0CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B452E7B60160073F0CD /* UIView+Shimmer.swift */,
 				11F78B2F2E79FAE50073F0CD /* String+Empty.swift */,
 				11F78B272E79F5C70073F0CD /* UIColor+AppColor.swift */,
 				11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */,
@@ -141,6 +165,7 @@
 		11F78B1F2E79CC080073F0CD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				11F78B432E7B42780073F0CD /* GradientView.swift */,
 				11F78B292E79F7420073F0CD /* Configurable.swift */,
 				11F78B202E79CC0E0073F0CD /* Reusable.swift */,
 			);
@@ -169,6 +194,24 @@
 				11F78B2D2E79F86F0073F0CD /* CurrencyModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		11F78B312E7AE3A30073F0CD /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B382E7AE3FE0073F0CD /* AppCoordinator.swift */,
+				11F78B362E7AE3E50073F0CD /* Coordinator.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		11F78B3E2E7AE5030073F0CD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				11F78B412E7AE5120073F0CD /* ViewModelState.swift */,
+				11F78B3F2E7AE50A0073F0CD /* ViewModel.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,14 +287,23 @@
 			files = (
 				11F78B2E2E79F8740073F0CD /* CurrencyModel.swift in Sources */,
 				1180FC6F2DC88A590044CD7C /* CollectionAdapter.swift in Sources */,
+				11F78B422E7AE51A0073F0CD /* ViewModelState.swift in Sources */,
+				11F78B392E7AE4020073F0CD /* AppCoordinator.swift in Sources */,
 				11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */,
 				1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */,
+				11F78B3B2E7AE42B0073F0CD /* HomeCoordinator.swift in Sources */,
+				11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */,
+				11F78B442E7B427C0073F0CD /* GradientView.swift in Sources */,
 				1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */,
 				11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */,
 				1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */,
 				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,
+				11F78B372E7AE3EB0073F0CD /* Coordinator.swift in Sources */,
+				11F78B462E7B601D0073F0CD /* UIView+Shimmer.swift in Sources */,
 				11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */,
 				1180FC6A2DA733380044CD7C /* CurrencyCollectionViewCell.swift in Sources */,
+				11F78B482E7B61990073F0CD /* CurrencyShimmerCollectionViewCell.swift in Sources */,
+				11F78B3D2E7AE4500073F0CD /* HomeViewModel.swift in Sources */,
 				11F78B212E79CC100073F0CD /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -49,6 +49,7 @@ class CurrencyCollectionViewCell: UICollectionViewCell, Configurable {
     private lazy var nameLabel: UILabel = {
         $0.text = "US Dollar"
         $0.textColor = .appColor(.titleLight)
+        $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -57,9 +58,11 @@ class CurrencyCollectionViewCell: UICollectionViewCell, Configurable {
     private lazy var codeLabel: UILabel = {
         $0.text = "USD"
         $0.textColor = .appColor(.subtitleDark)
+        $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 13)
-        $0.textColor = .secondarySystemBackground
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        $0.setContentCompressionResistancePriority(.required, for: .vertical)
         return $0
     }(UILabel())
     
@@ -134,11 +137,11 @@ class CurrencyCollectionViewCell: UICollectionViewCell, Configurable {
             ),
             
             flagImageView.widthAnchor.constraint(equalToConstant: 40),
-//            flagImageView.heightAnchor.constraint(equalToConstant: 40)
             
-//            priceLabel.heightAnchor.constraint(equalToConstant: 25),
+//            priceLabel.heightAnchor.constraint(equalToConstant: 17),
 //            priceLabel.widthAnchor.constraint(equalToConstant: 25)
         ])
+        contentView.isShimmering = true
     }
     
     func configure(with model: CurrencyModel) {}

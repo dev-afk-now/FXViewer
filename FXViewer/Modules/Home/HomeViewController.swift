@@ -13,7 +13,7 @@ final class HomeViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private lazy var navigationBar: UIView = {
-        $0.backgroundColor = .darkGray
+//        $0.backgroundColor = .darkGray
         let label = UILabel()
         label.text = "Currencies"
         $0.addSubview(label)
@@ -24,6 +24,19 @@ final class HomeViewController: UIViewController {
     lazy var blurEffect = UIBlurEffect(style: .dark) // можно .light, .dark, .systemChromeMaterial и др.
     lazy var blurView = UIVisualEffectView(effect: blurEffect)
     
+    private let viewModel: HomeViewModel
+    
+    // MARK: - Init -
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle -
     
     override func viewDidLoad() {
@@ -31,6 +44,7 @@ final class HomeViewController: UIViewController {
         configureCollectionView()
         setupConstrains()
         view.backgroundColor = .appColor(.background)
+        title = "Currencies"
     }
     
     private func configureCollectionView() {
@@ -42,25 +56,13 @@ final class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.backgroundColor = .clear
-        collectionView.registerNib(for: CurrencyCollectionViewCell.self)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.registerNib(for: CurrencyShimmerCollectionViewCell.self)
         updateLayout()
         // растягиваем на всю вью
-//        blurView.translatesAutoresizingMaskIntoConstraints = false
-//        navigationBar.addSubview(blurView)
-//        
-//
-//        NSLayoutConstraint.activate([
-//            blurView.topAnchor.constraint(equalTo: navigationBar.topAnchor),
-//            blurView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
-//            blurView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
-//            blurView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)
-//        ])
     }
     
-    private func updateLayout() {
-//        collectionView.collectionViewLayout.invalidateLayout()
-//        collectionView.collectionViewLayout =
-    }
+    private func updateLayout() {}
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let size = NSCollectionLayoutSize(
@@ -77,10 +79,7 @@ final class HomeViewController: UIViewController {
             subitems: [item]
         )
         
-//        group.interItemSpacing = .fixed(12)
-        
         let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = .init(
             top: 32,
             leading: .zero,
@@ -93,20 +92,21 @@ final class HomeViewController: UIViewController {
     // MARK: - Private methods -
     
     private func setupConstrains() {
-        view.addSubview(navigationBar)
+//        view.addSubview(navigationBar)
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
-            navigationBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
+//            navigationBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+//            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        view.applyBottomGradient()
     }
 }
 
@@ -126,7 +126,7 @@ extension HomeViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         return collectionView.deque(
-            type: CurrencyCollectionViewCell.self,
+            type: CurrencyShimmerCollectionViewCell.self,
             indexPath: indexPath
         )
     }

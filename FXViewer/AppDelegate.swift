@@ -16,10 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        
-        let viewController = HomeViewController()
-        window.rootViewController = viewController
+        let navigationController = UINavigationController()
+        navigationController.additionalSafeAreaInsets = .zero
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.navigationBar.prefersLargeTitles = true
+        let appCoordinator = AppCoordinator(navigationController: navigationController)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        appCoordinator.start()
         return true
     }
 }
