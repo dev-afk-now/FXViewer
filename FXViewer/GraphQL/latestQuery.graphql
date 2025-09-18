@@ -1,0 +1,9 @@
+
+query LatestEuro {
+  latest(quoteCurrencies: ["EUR"]) {
+    date
+    baseCurrency
+    quoteCurrency
+    quote
+  }
+}
