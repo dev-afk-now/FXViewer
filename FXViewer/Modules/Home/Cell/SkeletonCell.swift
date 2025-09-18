@@ -1,12 +1,13 @@
 //
-//  CurrencyShimmerCollectionViewCell.swift
+//  SkeletonCell.swift
 //  FXViewer
 //
 //  Created by Nik Dub on 9/17/25.
 //
+
 import UIKit
 
-class CurrencyShimmerCollectionViewCell: UICollectionViewCell, Configurable {
+class SkeletonCell: UICollectionViewCell, Configurable {
     
     // MARK: - Private properties -
     
@@ -99,10 +100,6 @@ class CurrencyShimmerCollectionViewCell: UICollectionViewCell, Configurable {
                 equalTo: namePlaceholderView.leadingAnchor,
                 constant: -12
             ),
-//            priceLabel.trailingAnchor.constraint(
-//                equalTo: containerView.trailingAnchor,
-//                constant: -Constants.containerInset
-//            ),
             namePlaceholderView.widthAnchor.constraint(equalToConstant: 125),
             namePlaceholderView.heightAnchor.constraint(equalToConstant: 13),
             namePlaceholderView.topAnchor.constraint(
@@ -117,10 +114,6 @@ class CurrencyShimmerCollectionViewCell: UICollectionViewCell, Configurable {
             codePlaceholderView.leadingAnchor.constraint(
                 equalTo: namePlaceholderView.leadingAnchor
             ),
-//            codePlaceholderView.bottomAnchor.constraint(
-//                equalTo: flagPlaceholderView.bottomAnchor,
-//                constant: 5
-//            ),
             
             pricePlaceholderView.trailingAnchor.constraint(
                 equalTo: containerView.trailingAnchor,
@@ -129,14 +122,6 @@ class CurrencyShimmerCollectionViewCell: UICollectionViewCell, Configurable {
             pricePlaceholderView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             pricePlaceholderView.widthAnchor.constraint(equalToConstant: 45),
             pricePlaceholderView.heightAnchor.constraint(equalToConstant: 13)
-            
-//            flagImageView.widthAnchor.constraint(equalToConstant: 40),
-//            codeLabel.widthAnchor.constraint(equalToConstant: 20),
-//            priceLabel.widthAnchor.constraint(equalToConstant: 20),
-//            nameLabel.widthAnchor.constraint(equalToConstant: 20),
-            
-//            priceLabel.heightAnchor.constraint(equalToConstant: 17),
-//            priceLabel.widthAnchor.constraint(equalToConstant: 25)
         ])
         contentView.isShimmering = true
     }
@@ -145,7 +130,7 @@ class CurrencyShimmerCollectionViewCell: UICollectionViewCell, Configurable {
 }
 
 
-extension CurrencyShimmerCollectionViewCell {
+extension SkeletonCell {
     enum Constants {
         static let verticalInset: CGFloat = 2
         static let horizontalInset: CGFloat = 20

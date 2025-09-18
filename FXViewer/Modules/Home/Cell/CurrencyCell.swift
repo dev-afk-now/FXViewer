@@ -1,5 +1,5 @@
 //
-//  CurrencyCollectionViewCell.swift
+//  CurrencyCell.swift
 //  FXViewer
 //
 //  Created by Nik Dub on 10.04.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyCollectionViewCell: UICollectionViewCell, Configurable {
+class CurrencyCell: UICollectionViewCell, Configurable {
     
     // MARK: - Private properties -
     
@@ -148,7 +148,7 @@ class CurrencyCollectionViewCell: UICollectionViewCell, Configurable {
 }
 
 
-extension CurrencyCollectionViewCell {
+extension CurrencyCell {
     enum Constants {
         static let verticalInset: CGFloat = 2
         static let horizontalInset: CGFloat = 20

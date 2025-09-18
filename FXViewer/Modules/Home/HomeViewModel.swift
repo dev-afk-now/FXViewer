@@ -12,18 +12,18 @@ enum HomeViewModelState: ViewModelState {
     case idle
     case started
     case loading
-    case updated(CurrencyModel)
+    case updated([CurrencyModel])
 }
 
 final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     
     // MARK: - Published properties -
     
-    @Published var query: String = .empty
+    @Published private(set) var query: String = .empty
 //    @Published var repositoryItems: [SearchItemResponse] = []
     @Published var hasToMoreItemsToLoad: Bool = false
 //    @Published var limitExceededResponse: ErrorResponse?
-    @Published var shoudlShowAlert: Bool = false
+    @Published var shouldShowAlert: Bool = false
     
     // MARK: - Private properties
     

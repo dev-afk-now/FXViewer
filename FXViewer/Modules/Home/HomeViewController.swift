@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 final class HomeViewController: UIViewController {
     
     // MARK: - Private properties -
     
     private var collectionView: UICollectionView!
+    private var collectionAdapter: HomeCollectionAdapter!
     private lazy var navigationBar: UIView = {
-//        $0.backgroundColor = .darkGray
         let label = UILabel()
         label.text = "Currencies"
         $0.addSubview(label)
@@ -21,10 +22,8 @@ final class HomeViewController: UIViewController {
         return $0
     }(UIView())
     
-    lazy var blurEffect = UIBlurEffect(style: .dark) // можно .light, .dark, .systemChromeMaterial и др.
-    lazy var blurView = UIVisualEffectView(effect: blurEffect)
-    
     private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Init -
     
@@ -43,8 +42,16 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupConstrains()
+        initialSetup()
+    }
+    
+    private func initialSetup() {
         view.backgroundColor = .appColor(.background)
         title = "Currencies"
+        viewModel.$state
+            .sink(receiveValue: handleStateUpdate)
+            .store(in: &cancellables)
+        viewModel.start()
     }
     
     private func configureCollectionView() {
@@ -52,17 +59,14 @@ final class HomeViewController: UIViewController {
             frame: view.bounds,
             collectionViewLayout: createLayout()
         )
-//        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.registerNib(for: CurrencyShimmerCollectionViewCell.self)
-        updateLayout()
-        // растягиваем на всю вью
+        collectionView.register(for: SkeletonCell.self)
+        collectionAdapter = HomeCollectionAdapter(
+            collectionView: collectionView
+        )
     }
-    
-    private func updateLayout() {}
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let size = NSCollectionLayoutSize(
@@ -108,26 +112,27 @@ final class HomeViewController: UIViewController {
         ])
         view.applyBottomGradient()
     }
-}
-
-
-// MARK: - Extensions -
-
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        return 20
+    
+    func showLoading() {
+        collectionAdapter.applySnapshot(
+            sections: [.skeleton],
+            itemsBySection: [.skeleton: CurrencyModel.placeholderList]
+        )
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        return collectionView.deque(
-            type: CurrencyShimmerCollectionViewCell.self,
-            indexPath: indexPath
-        )
+    func updateDataSource(_ items: [CurrencyModel]) {
+        collectionAdapter.applySnapshot(sections: [.main], itemsBySection: [.main: []])
+    }
+    
+    private func handleStateUpdate(_ state: HomeViewModelState) -> () {
+        print("updated value: \(state)")
+        switch state {
+        case .idle, .started:
+            break
+        case .loading:
+            showLoading()
+        case .updated(let elements):
+            updateDataSource(elements)
+        }
     }
 }
