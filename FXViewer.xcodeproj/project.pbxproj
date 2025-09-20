@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117C542E2E7F2EDF004DA583 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 117C542D2E7F2EDF004DA583 /* KeychainSwift */; };
+		117C54312E7F2F03004DA583 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54302E7F2EFD004DA583 /* KeychainService.swift */; };
+		117C54332E7F2FAC004DA583 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54322E7F2FA6004DA583 /* StorageService.swift */; };
+		117C54362E7F2FF4004DA583 /* StorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54352E7F2FD9004DA583 /* StorageObject.swift */; };
+		117C543A2E7F3E0A004DA583 /* APIKeyObfuscated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */; };
+		117C543E2E7F54BA004DA583 /* KeychainDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C543D2E7F54B5004DA583 /* KeychainDecorator.swift */; };
 		1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */; };
 		1180FC582D9AE0640044CD7C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC572D9AE0640044CD7C /* Base */; };
 		1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC622D9AE53A0044CD7C /* HomeViewController.swift */; };
@@ -17,6 +23,11 @@
 		119BE2CD2E7C98B400039379 /* latestQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 119BE2CC2E7C98A200039379 /* latestQuery.graphql */; };
 		119BE2E62E7CA43F00039379 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 119BE2E52E7CA43F00039379 /* Apollo */; };
 		119BE2E92E7CA6D600039379 /* SwopAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 119BE2E82E7CA6D600039379 /* SwopAPI */; };
+		119BE2EA2E7D856400039379 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC562D9AE0640044CD7C /* LaunchScreen.storyboard */; };
+		119BE2ED2E7D8EDF00039379 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2EC2E7D8ED400039379 /* AuthInterceptor.swift */; };
+		119BE2EF2E7D922200039379 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2EE2E7D921800039379 /* NetworkInterceptorProvider.swift */; };
+		119BE2F22E7D93D400039379 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2F12E7D93D100039379 /* DIContainer.swift */; };
+		119BE2F42E7DA66F00039379 /* currenciesQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 119BE2F32E7DA66100039379 /* currenciesQuery.graphql */; };
 		11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */; };
 		11F78B212E79CC100073F0CD /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F78B202E79CC0E0073F0CD /* Reusable.swift */; };
 		11F78B242E79F2320073F0CD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F78B232E79F2320073F0CD /* Colors.xcassets */; };
@@ -39,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		117C54302E7F2EFD004DA583 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		117C54322E7F2FA6004DA583 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		117C54352E7F2FD9004DA583 /* StorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageObject.swift; sourceTree = "<group>"; };
+		117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyObfuscated.swift; sourceTree = "<group>"; };
+		117C543D2E7F54B5004DA583 /* KeychainDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainDecorator.swift; sourceTree = "<group>"; };
 		1180FC482D9AE0610044CD7C /* FXViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FXViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1180FC572D9AE0640044CD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +65,10 @@
 		1180FC6E2DC88A590044CD7C /* HomeCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionAdapter.swift; sourceTree = "<group>"; };
 		119BE2CA2E7C952500039379 /* schema.graphqls */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
 		119BE2CC2E7C98A200039379 /* latestQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = latestQuery.graphql; sourceTree = "<group>"; };
+		119BE2EC2E7D8ED400039379 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		119BE2EE2E7D921800039379 /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		119BE2F12E7D93D100039379 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		119BE2F32E7DA66100039379 /* currenciesQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = currenciesQuery.graphql; sourceTree = "<group>"; };
 		11F78B1D2E79CBCB0073F0CD /* UICollectionView+register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+register.swift"; sourceTree = "<group>"; };
 		11F78B202E79CC0E0073F0CD /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		11F78B232E79F2320073F0CD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -75,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117C542E2E7F2EDF004DA583 /* KeychainSwift in Frameworks */,
 				119BE2E92E7CA6D600039379 /* SwopAPI in Frameworks */,
 				119BE2E62E7CA43F00039379 /* Apollo in Frameworks */,
 			);
@@ -83,6 +104,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		117C542F2E7F2EF6004DA583 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				117C54342E7F2FCA004DA583 /* Storage */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		117C54342E7F2FCA004DA583 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				117C543C2E7F54A7004DA583 /* Keychain */,
+				117C54352E7F2FD9004DA583 /* StorageObject.swift */,
+				117C54322E7F2FA6004DA583 /* StorageService.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		117C543C2E7F54A7004DA583 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				117C543D2E7F54B5004DA583 /* KeychainDecorator.swift */,
+				117C54302E7F2EFD004DA583 /* KeychainService.swift */,
+				117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		1180FC3F2D9AE0610044CD7C = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +151,8 @@
 		1180FC4A2D9AE0610044CD7C /* FXViewer */ = {
 			isa = PBXGroup;
 			children = (
+				117C542F2E7F2EF6004DA583 /* Service */,
+				119BE2F02E7D93CB00039379 /* DIContainer */,
 				119BE2C92E7C928900039379 /* GraphQL */,
 				11F78B4B2E7C75BB0073F0CD /* Network */,
 				11F78B3E2E7AE5030073F0CD /* Base */,
@@ -168,10 +219,28 @@
 		119BE2C92E7C928900039379 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				119BE2F32E7DA66100039379 /* currenciesQuery.graphql */,
 				119BE2CC2E7C98A200039379 /* latestQuery.graphql */,
 				119BE2CA2E7C952500039379 /* schema.graphqls */,
 			);
 			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		119BE2EB2E7D8EBE00039379 /* InterceptorProvider */ = {
+			isa = PBXGroup;
+			children = (
+				119BE2EE2E7D921800039379 /* NetworkInterceptorProvider.swift */,
+				119BE2EC2E7D8ED400039379 /* AuthInterceptor.swift */,
+			);
+			path = InterceptorProvider;
+			sourceTree = "<group>";
+		};
+		119BE2F02E7D93CB00039379 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				119BE2F12E7D93D100039379 /* DIContainer.swift */,
+			);
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		11F78B1C2E79CBC30073F0CD /* Extensions */ = {
@@ -241,6 +310,7 @@
 		11F78B4B2E7C75BB0073F0CD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				119BE2EB2E7D8EBE00039379 /* InterceptorProvider */,
 				11F78B4C2E7C85240073F0CD /* GraphQLService.swift */,
 			);
 			path = Network;
@@ -293,6 +363,7 @@
 			packageReferences = (
 				119BE2E42E7CA43F00039379 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				119BE2E72E7CA6D600039379 /* XCLocalSwiftPackageReference "SwopAPI" */,
+				117C542C2E7F2EDF004DA583 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 1180FC492D9AE0610044CD7C /* Products */;
 			projectDirPath = "";
@@ -308,8 +379,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				119BE2EA2E7D856400039379 /* LaunchScreen.storyboard in Resources */,
 				119BE2CB2E7C952500039379 /* schema.graphqls in Resources */,
 				119BE2CD2E7C98B400039379 /* latestQuery.graphql in Resources */,
+				119BE2F42E7DA66F00039379 /* currenciesQuery.graphql in Resources */,
 				11F78B242E79F2320073F0CD /* Colors.xcassets in Resources */,
 				11F78B262E79F2440073F0CD /* Images.xcassets in Resources */,
 				1180FC582D9AE0640044CD7C /* Base in Resources */,
@@ -324,11 +397,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				11F78B2E2E79F8740073F0CD /* CurrencyModel.swift in Sources */,
+				117C543E2E7F54BA004DA583 /* KeychainDecorator.swift in Sources */,
 				1180FC6F2DC88A590044CD7C /* HomeCollectionAdapter.swift in Sources */,
 				11F78B422E7AE51A0073F0CD /* ViewModelState.swift in Sources */,
 				11F78B392E7AE4020073F0CD /* AppCoordinator.swift in Sources */,
 				11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */,
 				1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */,
+				119BE2EF2E7D922200039379 /* NetworkInterceptorProvider.swift in Sources */,
+				117C54332E7F2FAC004DA583 /* StorageService.swift in Sources */,
+				117C54312E7F2F03004DA583 /* KeychainService.swift in Sources */,
 				11F78B3B2E7AE42B0073F0CD /* HomeCoordinator.swift in Sources */,
 				11F78B4D2E7C85290073F0CD /* GraphQLService.swift in Sources */,
 				11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */,
@@ -338,12 +415,16 @@
 				1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */,
 				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,
 				11F78B4A2E7C59C50073F0CD /* CollectionAdapter.swift in Sources */,
+				117C543A2E7F3E0A004DA583 /* APIKeyObfuscated.swift in Sources */,
 				11F78B372E7AE3EB0073F0CD /* Coordinator.swift in Sources */,
 				11F78B462E7B601D0073F0CD /* UIView+Shimmer.swift in Sources */,
 				11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */,
+				119BE2ED2E7D8EDF00039379 /* AuthInterceptor.swift in Sources */,
 				1180FC6A2DA733380044CD7C /* CurrencyCell.swift in Sources */,
 				11F78B482E7B61990073F0CD /* SkeletonCell.swift in Sources */,
+				119BE2F22E7D93D400039379 /* DIContainer.swift in Sources */,
 				11F78B3D2E7AE4500073F0CD /* HomeViewModel.swift in Sources */,
+				117C54362E7F2FF4004DA583 /* StorageObject.swift in Sources */,
 				11F78B212E79CC100073F0CD /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,7 +573,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FXViewer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,7 +600,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FXViewer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -566,6 +647,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		117C542C2E7F2EDF004DA583 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		119BE2E42E7CA43F00039379 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -577,6 +666,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		117C542D2E7F2EDF004DA583 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 117C542C2E7F2EDF004DA583 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		119BE2E52E7CA43F00039379 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 119BE2E42E7CA43F00039379 /* XCRemoteSwiftPackageReference "apollo-ios" */;

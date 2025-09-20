@@ -24,6 +24,7 @@ final class HomeViewController: UIViewController {
     
     private let viewModel: HomeViewModel
     private var cancellables = Set<AnyCancellable>()
+    private let graphqlService = DIContainer.shared.graphQLService
     
     // MARK: - Init -
     
@@ -43,6 +44,7 @@ final class HomeViewController: UIViewController {
         configureCollectionView()
         setupConstrains()
         initialSetup()
+        graphqlService.fetchCurrencies()
     }
     
     private func initialSetup() {

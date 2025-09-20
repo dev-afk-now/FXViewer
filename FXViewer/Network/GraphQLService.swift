@@ -6,24 +6,54 @@
 //
 
 import Apollo
-//
-//protocol GraphQLServiceProtocol {
-//    func fetchUser(id: String) async throws -> User
-//}
-//
-//final class GraphQLService: GraphQLServiceProtocol {
-//    private let client: ApolloClient
-//
-//    init(client: ApolloClient) {
-//        self.client = client
-//    }
-//
-//    func fetchUser(id: String) async throws -> User {
-//        let query = GetUserQuery(id: id)
-//        let result = try await client.fetchAsync(query: query)
-//        guard let gqlUser = result.data?.user else {
-//            throw APIError.notFound
-//        }
-//        return gqlUser.toDomain()
-//    }
-//}
+import SwopAPI
+import Foundation
+
+protocol GraphQLServiceProtocol {
+    func fetchEuroLatest(id: String)
+    func fetchCurrencies()
+}
+
+final class GraphQLService: GraphQLServiceProtocol {
+    typealias Latest = LatestEuroQuery.Data.Latest
+    
+    private let client: ApolloClient
+
+    init(client: ApolloClient) {
+        self.client = client
+    }
+    
+    func fetchCurrencies() {
+        let query = CurrenciesQuery()
+        client.fetch(
+            query: query,
+            cachePolicy: .fetchIgnoringCacheData,
+            queue: DispatchQueue.global()
+        ) { result in
+            print(result)
+            switch result {
+            case .success(let success):
+                let items = success.data?.currencies
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchEuroLatest(id: String){
+        let query = LatestEuroQuery()
+        client.fetch(
+            query: query,
+            cachePolicy: .fetchIgnoringCacheData,
+            queue: DispatchQueue.global()
+        ) { result in
+            print(result)
+            switch result {
+            case .success(let success):
+                let items = success.data?.latest
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
+    }
+}

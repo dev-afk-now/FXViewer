@@ -28,7 +28,7 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     // MARK: - Private properties
     
     private unowned let coordinator: HomeCoordinator
-    
+    private let apiClient: GraphQLServiceProtocol
     private var isFetchingMore: Bool = false
     private var task: Task<Void, Error>?
 //    private let apiClient: SearchAPIClient
@@ -46,9 +46,9 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     
     init(
         coordinator: HomeCoordinator,
-//        apiClient: SearchAPIClient = SearchAPIClientImpl()
+        apiClient: GraphQLServiceProtocol = DIContainer.shared.graphQLService
     ) {
-//        self.apiClient = apiClient
+        self.apiClient = apiClient
         self.coordinator = coordinator
         super.init(state: .idle)
     }

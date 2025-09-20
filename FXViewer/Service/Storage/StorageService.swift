@@ -11,4 +11,9 @@ public protocol Storage {
     func getValue<T>(for key: String) -> T? where T: StorageObject
     func set(_ value: StorageObject, for key: String)
     func removeValue(for key: String)
+    func clear()
+}
+
+enum StorageKeys {
+    static let apiKey = "storage_apiKey"
 }

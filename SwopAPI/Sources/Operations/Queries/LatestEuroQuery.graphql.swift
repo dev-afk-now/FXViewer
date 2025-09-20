@@ -7,7 +7,7 @@ public class LatestEuroQuery: GraphQLQuery {
   public static let operationName: String = "LatestEuro"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query LatestEuro { latest(quoteCurrencies: ["EUR"]) { __typename date baseCurrency quoteCurrency quote } }"#
+      #"query LatestEuro { latest { __typename date baseCurrency quoteCurrency quote } }"#
     ))
 
   public init() {}
@@ -18,7 +18,7 @@ public class LatestEuroQuery: GraphQLQuery {
 
     public static var __parentType: any ApolloAPI.ParentType { SwopAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("latest", [Latest].self, arguments: ["quoteCurrencies": ["EUR"]]),
+      .field("latest", [Latest].self),
     ] }
 
     public var latest: [Latest] { __data["latest"] }
