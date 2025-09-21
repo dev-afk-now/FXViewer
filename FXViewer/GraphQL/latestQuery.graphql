@@ -1,7 +1,5 @@
 query LatestEuro {
   latest {
-    date
-    baseCurrency
     quoteCurrency
     quote
   }

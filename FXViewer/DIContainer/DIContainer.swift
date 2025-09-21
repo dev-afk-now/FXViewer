@@ -39,4 +39,5 @@ final class DIContainer {
 
 enum Globals {
     static let baseURL = URL(string: "https://swop.cx/graphql")!
+    static let imageBaseURL = "https://raw.githubusercontent.com/Lissy93/currency-flags/master/assets/flags_svg/"
 }

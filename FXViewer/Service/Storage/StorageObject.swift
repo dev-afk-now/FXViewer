@@ -29,4 +29,12 @@ public extension StorageObject where Self: Codable {
 }
 
 extension String: StorageObject {}
-extension [UInt8]: StorageObject {}
+extension [UInt8]: StorageObject {
+    public func toData() -> Data? {
+        return Data(self)
+    }
+    
+    public init?(from data: Data) {
+        self = [UInt8](data)
+    }
+}

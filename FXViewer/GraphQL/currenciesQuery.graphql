@@ -2,8 +2,5 @@ query Currencies {
   currencies {
     code
     name
-    numericCode
-    decimalDigits
-    active
   }
 }

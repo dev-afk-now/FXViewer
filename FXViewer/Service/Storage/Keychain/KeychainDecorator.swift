@@ -36,12 +36,10 @@ final class KeychainDecorator: Storage {
     }
     
     func prepareIfNeeded() {
-        defer { APIKeyObfuscated.obfuscatedBytes = [] }
-        
+        defer { APIKeyObfuscated.clear()}
         guard let existing: [UInt8] = storage.getValue(for: tokenStorageKey) else {
             set(APIKeyObfuscated.obfuscatedBytes, for: tokenStorageKey)
             return
         }
-        print(existing)
     }
 }

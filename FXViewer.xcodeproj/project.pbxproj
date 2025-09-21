@@ -13,6 +13,9 @@
 		117C54362E7F2FF4004DA583 /* StorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54352E7F2FD9004DA583 /* StorageObject.swift */; };
 		117C543A2E7F3E0A004DA583 /* APIKeyObfuscated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */; };
 		117C543E2E7F54BA004DA583 /* KeychainDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C543D2E7F54B5004DA583 /* KeychainDecorator.swift */; };
+		117C54422E807356004DA583 /* FXError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54412E807354004DA583 /* FXError.swift */; };
+		117C54442E807373004DA583 /* GraphQLResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */; };
+		117C54462E80798C004DA583 /* LatestNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54452E807987004DA583 /* LatestNetworkModel.swift */; };
 		1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */; };
 		1180FC582D9AE0640044CD7C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC572D9AE0640044CD7C /* Base */; };
 		1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC622D9AE53A0044CD7C /* HomeViewController.swift */; };
@@ -55,6 +58,9 @@
 		117C54352E7F2FD9004DA583 /* StorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageObject.swift; sourceTree = "<group>"; };
 		117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyObfuscated.swift; sourceTree = "<group>"; };
 		117C543D2E7F54B5004DA583 /* KeychainDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainDecorator.swift; sourceTree = "<group>"; };
+		117C54412E807354004DA583 /* FXError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXError.swift; sourceTree = "<group>"; };
+		117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResponseHandler.swift; sourceTree = "<group>"; };
+		117C54452E807987004DA583 /* LatestNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestNetworkModel.swift; sourceTree = "<group>"; };
 		1180FC482D9AE0610044CD7C /* FXViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FXViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1180FC572D9AE0640044CD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -174,7 +180,6 @@
 			children = (
 				11F78B3C2E7AE44D0073F0CD /* HomeViewModel.swift */,
 				11F78B3A2E7AE4270073F0CD /* HomeCoordinator.swift */,
-				11F78B2B2E79F7D80073F0CD /* New Group */,
 				1180FC642D9AE9100044CD7C /* Cell */,
 				1180FC622D9AE53A0044CD7C /* HomeViewController.swift */,
 				1180FC6E2DC88A590044CD7C /* HomeCollectionAdapter.swift */,
@@ -211,6 +216,7 @@
 		1180FC6B2DBF0C000044CD7C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				117C54452E807987004DA583 /* LatestNetworkModel.swift */,
 				1180FC6C2DBF0C180044CD7C /* CurrencyNetworkModel.swift */,
 			);
 			path = Models;
@@ -257,6 +263,7 @@
 		11F78B1F2E79CC080073F0CD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				117C54412E807354004DA583 /* FXError.swift */,
 				11F78B432E7B42780073F0CD /* GradientView.swift */,
 				11F78B292E79F7420073F0CD /* Configurable.swift */,
 				11F78B202E79CC0E0073F0CD /* Reusable.swift */,
@@ -271,13 +278,6 @@
 				11F78B252E79F2440073F0CD /* Images.xcassets */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		11F78B2B2E79F7D80073F0CD /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		11F78B2C2E79F85B0073F0CD /* Models */ = {
@@ -310,8 +310,9 @@
 		11F78B4B2E7C75BB0073F0CD /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				119BE2EB2E7D8EBE00039379 /* InterceptorProvider */,
+				117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */,
 				11F78B4C2E7C85240073F0CD /* GraphQLService.swift */,
+				119BE2EB2E7D8EBE00039379 /* InterceptorProvider */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -400,6 +401,8 @@
 				117C543E2E7F54BA004DA583 /* KeychainDecorator.swift in Sources */,
 				1180FC6F2DC88A590044CD7C /* HomeCollectionAdapter.swift in Sources */,
 				11F78B422E7AE51A0073F0CD /* ViewModelState.swift in Sources */,
+				117C54442E807373004DA583 /* GraphQLResponseHandler.swift in Sources */,
+				117C54462E80798C004DA583 /* LatestNetworkModel.swift in Sources */,
 				11F78B392E7AE4020073F0CD /* AppCoordinator.swift in Sources */,
 				11F78B302E79FAEB0073F0CD /* String+Empty.swift in Sources */,
 				1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */,
@@ -411,6 +414,7 @@
 				11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */,
 				11F78B442E7B427C0073F0CD /* GradientView.swift in Sources */,
 				1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */,
+				117C54422E807356004DA583 /* FXError.swift in Sources */,
 				11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */,
 				1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */,
 				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,

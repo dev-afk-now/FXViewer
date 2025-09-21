@@ -54,6 +54,7 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     }
     
     override func start() {
+        apiClient.fetchEuroLatest()
 //        $query
 //            .debounce(for: .seconds(debounceInterval), scheduler: DispatchQueue.main)
 //            .filter { $0.count >= 3 || $0.isEmpty }
