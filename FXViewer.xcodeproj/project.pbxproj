@@ -16,6 +16,9 @@
 		117C54422E807356004DA583 /* FXError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54412E807354004DA583 /* FXError.swift */; };
 		117C54442E807373004DA583 /* GraphQLResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */; };
 		117C54462E80798C004DA583 /* LatestNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54452E807987004DA583 /* LatestNetworkModel.swift */; };
+		117C54482E8090CA004DA583 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54472E8090C7004DA583 /* ErrorHandler.swift */; };
+		117C544B2E8090FF004DA583 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C544A2E8090F5004DA583 /* CurrencyRepository.swift */; };
+		117C544D2E80B062004DA583 /* String+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C544C2E80B05E004DA583 /* String+Double.swift */; };
 		1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */; };
 		1180FC582D9AE0640044CD7C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC572D9AE0640044CD7C /* Base */; };
 		1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC622D9AE53A0044CD7C /* HomeViewController.swift */; };
@@ -61,6 +64,9 @@
 		117C54412E807354004DA583 /* FXError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXError.swift; sourceTree = "<group>"; };
 		117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLResponseHandler.swift; sourceTree = "<group>"; };
 		117C54452E807987004DA583 /* LatestNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestNetworkModel.swift; sourceTree = "<group>"; };
+		117C54472E8090C7004DA583 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		117C544A2E8090F5004DA583 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
+		117C544C2E80B05E004DA583 /* String+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Double.swift"; sourceTree = "<group>"; };
 		1180FC482D9AE0610044CD7C /* FXViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FXViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1180FC572D9AE0640044CD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 		117C542F2E7F2EF6004DA583 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				117C54492E8090EE004DA583 /* Repository */,
 				117C54342E7F2FCA004DA583 /* Storage */,
 			);
 			path = Service;
@@ -136,6 +143,14 @@
 				117C54392E7F3E09004DA583 /* APIKeyObfuscated.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		117C54492E8090EE004DA583 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				117C544A2E8090F5004DA583 /* CurrencyRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		1180FC3F2D9AE0610044CD7C = {
@@ -252,6 +267,7 @@
 		11F78B1C2E79CBC30073F0CD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				117C544C2E80B05E004DA583 /* String+Double.swift */,
 				11F78B452E7B60160073F0CD /* UIView+Shimmer.swift */,
 				11F78B2F2E79FAE50073F0CD /* String+Empty.swift */,
 				11F78B272E79F5C70073F0CD /* UIColor+AppColor.swift */,
@@ -310,6 +326,7 @@
 		11F78B4B2E7C75BB0073F0CD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				117C54472E8090C7004DA583 /* ErrorHandler.swift */,
 				117C54432E80736C004DA583 /* GraphQLResponseHandler.swift */,
 				11F78B4C2E7C85240073F0CD /* GraphQLService.swift */,
 				119BE2EB2E7D8EBE00039379 /* InterceptorProvider */,
@@ -412,6 +429,7 @@
 				11F78B3B2E7AE42B0073F0CD /* HomeCoordinator.swift in Sources */,
 				11F78B4D2E7C85290073F0CD /* GraphQLService.swift in Sources */,
 				11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */,
+				117C544D2E80B062004DA583 /* String+Double.swift in Sources */,
 				11F78B442E7B427C0073F0CD /* GradientView.swift in Sources */,
 				1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */,
 				117C54422E807356004DA583 /* FXError.swift in Sources */,
@@ -420,6 +438,8 @@
 				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,
 				11F78B4A2E7C59C50073F0CD /* CollectionAdapter.swift in Sources */,
 				117C543A2E7F3E0A004DA583 /* APIKeyObfuscated.swift in Sources */,
+				117C54482E8090CA004DA583 /* ErrorHandler.swift in Sources */,
+				117C544B2E8090FF004DA583 /* CurrencyRepository.swift in Sources */,
 				11F78B372E7AE3EB0073F0CD /* Coordinator.swift in Sources */,
 				11F78B462E7B601D0073F0CD /* UIView+Shimmer.swift in Sources */,
 				11F78B2A2E79F7480073F0CD /* Configurable.swift in Sources */,

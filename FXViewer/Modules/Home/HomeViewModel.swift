@@ -8,9 +8,8 @@
 import Foundation
 import Combine
 
-enum HomeViewModelState: ViewModelState {
+enum HomeViewModelState: ViewModelState, Equatable {
     case idle
-    case started
     case loading
     case updated([CurrencyModel])
 }
@@ -28,10 +27,9 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     // MARK: - Private properties
     
     private unowned let coordinator: HomeCoordinator
-    private let apiClient: GraphQLServiceProtocol
+    private let repository: CurrencyRepository
     private var isFetchingMore: Bool = false
     private var task: Task<Void, Error>?
-//    private let apiClient: SearchAPIClient
     
     private let debounceInterval: TimeInterval = 1
     
@@ -46,15 +44,15 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     
     init(
         coordinator: HomeCoordinator,
-        apiClient: GraphQLServiceProtocol = DIContainer.shared.graphQLService
+        repository: CurrencyRepository = CurrencyRepositoryImpl()
     ) {
-        self.apiClient = apiClient
+        self.repository = repository
         self.coordinator = coordinator
         super.init(state: .idle)
     }
     
     override func start() {
-        apiClient.fetchEuroLatest()
+        
 //        $query
 //            .debounce(for: .seconds(debounceInterval), scheduler: DispatchQueue.main)
 //            .filter { $0.count >= 3 || $0.isEmpty }
@@ -76,6 +74,15 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
 //        }
 //        .store(in: &cancellables)
         self.updateState(newValue: .loading)
+        self.repository.getCurrencyList { [weak self] result in
+            switch result {
+            case .success(let success):
+                self?.updateState(newValue: .updated(success))
+//                self?.handleResponse(result)
+            case .failure(let failure):
+                break
+            }
+        }
     }
     
     func fetchMoreRepositories() {
@@ -124,12 +131,18 @@ private extension HomeViewModel {
 //        }
     }
     
-    func handleResponse(_ response: String) {
+    func handleResponse(_ response: Result<[CurrencyModel], FXError>) {
+        switch response {
+        case .success(let responseItems):
+            break
+        case .failure(let error):
+            break
+        }
         print("SET LOADED")
 //        repositoryItems += response.items
 //        totalRepositoryCount = response.totalCount
 //        hasToMoreItemsToLoad = totalRepositoryCount > repositoryItems.count
 //        isFetchingMore = false
-//        updateState(newValue: .started)
+//        updateState(newValue: .idle)
     }
 }

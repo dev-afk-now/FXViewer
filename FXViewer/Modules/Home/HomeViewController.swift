@@ -12,6 +12,9 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Private properties -
     
+    private let viewModel: HomeViewModel
+    private var cancellables = Set<AnyCancellable>()
+    
     private var collectionView: UICollectionView!
     private var collectionAdapter: HomeCollectionAdapter!
     private lazy var navigationBar: UIView = {
@@ -22,8 +25,13 @@ final class HomeViewController: UIViewController {
         return $0
     }(UIView())
     
-    private let viewModel: HomeViewModel
-    private var cancellables = Set<AnyCancellable>()
+    private lazy var emptyImageView: UIImageView = {
+        $0.image = UIImage(named: "fxviewerlogo")!
+        $0.contentMode = .scaleAspectFit
+        $0.isHidden = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIImageView())
     
     // MARK: - Init -
     
@@ -43,7 +51,6 @@ final class HomeViewController: UIViewController {
         configureCollectionView()
         setupConstrains()
         initialSetup()
-        viewModel.start()
     }
     
     private func initialSetup() {
@@ -52,6 +59,7 @@ final class HomeViewController: UIViewController {
         viewModel.$state
             .sink(receiveValue: handleStateUpdate)
             .store(in: &cancellables)
+        viewModel.start()
     }
     
     private func configureCollectionView() {
@@ -63,6 +71,7 @@ final class HomeViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(for: SkeletonCell.self)
+        collectionView.register(for: CurrencyCell.self)
         collectionAdapter = HomeCollectionAdapter(
             collectionView: collectionView
         )
@@ -98,13 +107,17 @@ final class HomeViewController: UIViewController {
     private func setupConstrains() {
 //        view.addSubview(navigationBar)
         view.addSubview(collectionView)
+        view.addSubview(emptyImageView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
 //            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
 //            navigationBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
 //            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 //            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
+            emptyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyImageView.widthAnchor.constraint(equalToConstant: 150),
+            emptyImageView.heightAnchor.constraint(equalTo: emptyImageView.widthAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -121,18 +134,23 @@ final class HomeViewController: UIViewController {
     }
     
     func updateDataSource(_ items: [CurrencyModel]) {
-        collectionAdapter.applySnapshot(sections: [.main], itemsBySection: [.main: []])
+        collectionAdapter.applySnapshot(sections: [.main], itemsBySection: [.main: items])
+//        UIView.animate(withDuration: 0.3) { [unowned self] in
+//            self.emptyImageView.alpha = items.isEmpty ? 0 : 1
+//        }
     }
     
     private func handleStateUpdate(_ state: HomeViewModelState) -> () {
         print("updated value: \(state)")
-        switch state {
-        case .idle, .started:
-            break
-        case .loading:
-            showLoading()
-        case .updated(let elements):
-            updateDataSource(elements)
+        DispatchQueue.main.async { [unowned self] in
+            switch state {
+            case .idle:
+                updateDataSource([])
+            case .loading:
+                showLoading()
+            case .updated(let elements):
+                updateDataSource(elements)
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ open class BaseViewModel<State: ViewModelState>: ObservableObject {
     deinit {
         cancel()
     }
-
+    
     private func cancel() {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()

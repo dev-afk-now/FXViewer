@@ -47,27 +47,25 @@ class CurrencyCell: UICollectionViewCell, Configurable {
     }(UIImageView())
     
     private lazy var nameLabel: UILabel = {
-        $0.text = "US Dollar"
         $0.textColor = .appColor(.titleLight)
+        $0.minimumScaleFactor = 0.75
         $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
+        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        $0.setContentCompressionResistancePriority(.required, for: .vertical)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
     
     private lazy var codeLabel: UILabel = {
-        $0.text = "USD"
         $0.textColor = .appColor(.subtitleDark)
         $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 13)
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        $0.setContentCompressionResistancePriority(.required, for: .vertical)
         return $0
     }(UILabel())
     
     private lazy var priceLabel: UILabel = {
-        $0.text = "0.89"
         $0.textColor = .appColor(.titleLight)
         $0.setContentHuggingPriority(.required, for: .horizontal)
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
@@ -141,10 +139,13 @@ class CurrencyCell: UICollectionViewCell, Configurable {
 //            priceLabel.heightAnchor.constraint(equalToConstant: 17),
 //            priceLabel.widthAnchor.constraint(equalToConstant: 25)
         ])
-        contentView.isShimmering = true
     }
     
-    func configure(with model: CurrencyModel) {}
+    func configure(with model: CurrencyModel) {
+        self.nameLabel.text = model.name
+        self.codeLabel.text = model.code
+        self.priceLabel.text = model.price.formatCurrency(currency: model.code)
+    }
 }
 
 
