@@ -17,21 +17,32 @@ final class HomeViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var collectionAdapter: HomeCollectionAdapter!
-    private lazy var navigationBar: UIView = {
-        let label = UILabel()
-        label.text = "Currencies"
-        $0.addSubview(label)
+    private lazy var navigationBar: PullHeaderView = {
+        $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "Pull to update"
+        $0.font = .systemFont(ofSize: 17, weight: .semibold)
+        $0.textColor = .gray
+        $0.textAlignment = .center
+        $0.onAction = { [unowned self] in
+            self.viewModel.start()
+        }
+        $0.alpha = .zero
         return $0
-    }(UIView())
+    }(PullHeaderView())
     
     private lazy var emptyImageView: UIImageView = {
         $0.image = UIImage(named: "fxviewerlogo")!
         $0.contentMode = .scaleAspectFit
         $0.isHidden = true
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+        $0.alpha = 0.4
         return $0
     }(UIImageView())
+    
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Init -
     
@@ -67,14 +78,16 @@ final class HomeViewController: UIViewController {
             frame: view.bounds,
             collectionViewLayout: createLayout()
         )
-        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(for: SkeletonCell.self)
         collectionView.register(for: CurrencyCell.self)
         collectionAdapter = HomeCollectionAdapter(
-            collectionView: collectionView
+            collectionView: collectionView,
+            pullDelegate: navigationBar
         )
+        collectionView.delegate = collectionAdapter
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -105,24 +118,28 @@ final class HomeViewController: UIViewController {
     // MARK: - Private methods -
     
     private func setupConstrains() {
-//        view.addSubview(navigationBar)
+        collectionView.addSubview(navigationBar)
         view.addSubview(collectionView)
         view.addSubview(emptyImageView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-//            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
-//            navigationBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-//            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             emptyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            emptyImageView.widthAnchor.constraint(equalToConstant: 150),
+            emptyImageView.widthAnchor.constraint(equalToConstant: 100),
             emptyImageView.heightAnchor.constraint(equalTo: emptyImageView.widthAnchor),
+            
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            navigationBar.topAnchor.constraint(equalTo: collectionView.topAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 25),
+//            navigationBar.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
+//            navigationBar.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
+            navigationBar.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor)
         ])
+//        view.sendSubviewToBack(emptyImageView)
         view.applyBottomGradient()
     }
     
@@ -134,14 +151,17 @@ final class HomeViewController: UIViewController {
     }
     
     func updateDataSource(_ items: [CurrencyModel]) {
+        collectionView.setContentOffset(.zero, animated: false)
         collectionAdapter.applySnapshot(sections: [.main], itemsBySection: [.main: items])
-//        UIView.animate(withDuration: 0.3) { [unowned self] in
-//            self.emptyImageView.alpha = items.isEmpty ? 0 : 1
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned self] in
+            collectionView.setContentOffset(.zero, animated: false)
+        }
     }
     
     private func handleStateUpdate(_ state: HomeViewModelState) -> () {
-        print("updated value: \(state)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.emptyImageView.isHidden = state != .idle
+        }
         DispatchQueue.main.async { [unowned self] in
             switch state {
             case .idle:

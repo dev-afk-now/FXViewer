@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct CurrencyModel: Hashable {
-    let id = UUID()
+struct CurrencyModel: Codable, Hashable {
+    var id = UUID()
     let name: String
     let code: String
     let price: String
     let image: String
+    var isFavorite = false
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

@@ -6,7 +6,7 @@
 //
 
 final class KeychainDecorator: Storage {
-    private let tokenStorageKey = StorageKeys.apiKey
+    private let tokenStorageKey = StorageKeys.api
     private let storage: Storage
     
     init(storage: Storage) {

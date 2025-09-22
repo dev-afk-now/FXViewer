@@ -78,9 +78,9 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
             switch result {
             case .success(let success):
                 self?.updateState(newValue: .updated(success))
-//                self?.handleResponse(result)
+                //                self?.handleResponse(result)
             case .failure(let failure):
-                break
+                self?.updateState(newValue: .idle)
             }
         }
     }

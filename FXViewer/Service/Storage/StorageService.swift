@@ -15,5 +15,7 @@ public protocol Storage {
 }
 
 enum StorageKeys {
-    static let apiKey = "storage_apiKey"
+    static let api = "storage_apiKey"
+    static let currencies = "storage_currencies"
+    static let favorites = "storage_favorites"
 }

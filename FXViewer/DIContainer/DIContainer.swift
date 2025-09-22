@@ -11,6 +11,7 @@ import Apollo
 final class DIContainer {
     static let shared = DIContainer()
     private(set) lazy var graphQLService: GraphQLServiceProtocol = GraphQLService(client: apolloClient)
+    let storage: Storage
     private let keychainService: Storage
     
     // MARK: - Private properties -
@@ -23,7 +24,7 @@ final class DIContainer {
     )
     private lazy var provider = NetworkInterceptorProvider(
         store: store,
-        token: keychainService.getValue(for: StorageKeys.apiKey)
+        token: keychainService.getValue(for: StorageKeys.api)
     )
     private lazy var transport = RequestChainNetworkTransport(
         interceptorProvider: provider,
@@ -33,11 +34,13 @@ final class DIContainer {
         let keychainService = KeychainService(decoder: decoder)
         let keychainDecorator = KeychainDecorator(storage: keychainService)
         keychainDecorator.prepareIfNeeded()
+        self.storage = FileManagerService()
         self.keychainService = keychainDecorator
     }
 }
 
 enum Globals {
     static let baseURL = URL(string: "https://swop.cx/graphql")!
-    static let imageBaseURL = "https://raw.githubusercontent.com/Lissy93/currency-flags/master/assets/flags_svg/"
+    static let baseImageURL = "https://raw.githubusercontent.com/Lissy93/currency-flags/master/assets/flags_svg/"
+    static let placeholderURL = "https://placehold.co/260x200?text=No%20image"
 }

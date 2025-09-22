@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KingfisherSVG
 
 class CurrencyCell: UICollectionViewCell, Configurable {
     
@@ -41,6 +42,10 @@ class CurrencyCell: UICollectionViewCell, Configurable {
     private lazy var flagImageView: UIImageView = {
         $0.image = UIImage(named: "norway")
         $0.layer.cornerRadius = 6
+        $0.layer.masksToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        $0.backgroundColor = .lightGray
         $0.clipsToBounds = true
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
@@ -51,8 +56,9 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         $0.minimumScaleFactor = 0.75
         $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
-        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
         $0.setContentCompressionResistancePriority(.required, for: .vertical)
+        $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
@@ -69,6 +75,8 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         $0.textColor = .appColor(.titleLight)
         $0.setContentHuggingPriority(.required, for: .horizontal)
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
+        $0.textAlignment = .right
+        $0.setContentCompressionResistancePriority(.required, for: .horizontal)
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UILabel())
@@ -145,6 +153,18 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         self.nameLabel.text = model.name
         self.codeLabel.text = model.code
         self.priceLabel.text = model.price.formatCurrency(currency: model.code)
+        guard let url = URL(string: model.image) else {
+            return
+        }
+        flagImageView.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .cacheOriginalImage,
+                .processor(SVGProcessor.default),
+                .cacheSerializer(SVGCacheSerializer.default)
+            ]
+        )
     }
 }
 

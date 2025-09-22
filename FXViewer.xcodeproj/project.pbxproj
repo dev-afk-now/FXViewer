@@ -19,6 +19,9 @@
 		117C54482E8090CA004DA583 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54472E8090C7004DA583 /* ErrorHandler.swift */; };
 		117C544B2E8090FF004DA583 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C544A2E8090F5004DA583 /* CurrencyRepository.swift */; };
 		117C544D2E80B062004DA583 /* String+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C544C2E80B05E004DA583 /* String+Double.swift */; };
+		117C54562E8148E5004DA583 /* KingfisherSVG in Frameworks */ = {isa = PBXBuildFile; productRef = 117C54552E8148E5004DA583 /* KingfisherSVG */; };
+		117C54592E8171E3004DA583 /* PullHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C54582E8171DE004DA583 /* PullHeaderView.swift */; };
+		117C545C2E81814E004DA583 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117C545B2E81814D004DA583 /* FileManager.swift */; };
 		1180FC4C2D9AE0610044CD7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */; };
 		1180FC582D9AE0640044CD7C /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC572D9AE0640044CD7C /* Base */; };
 		1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1180FC622D9AE53A0044CD7C /* HomeViewController.swift */; };
@@ -67,6 +70,8 @@
 		117C54472E8090C7004DA583 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		117C544A2E8090F5004DA583 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		117C544C2E80B05E004DA583 /* String+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Double.swift"; sourceTree = "<group>"; };
+		117C54582E8171DE004DA583 /* PullHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullHeaderView.swift; sourceTree = "<group>"; };
+		117C545B2E81814D004DA583 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		1180FC482D9AE0610044CD7C /* FXViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FXViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1180FC4B2D9AE0610044CD7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1180FC572D9AE0640044CD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 				117C542E2E7F2EDF004DA583 /* KeychainSwift in Frameworks */,
 				119BE2E92E7CA6D600039379 /* SwopAPI in Frameworks */,
 				119BE2E62E7CA43F00039379 /* Apollo in Frameworks */,
+				117C54562E8148E5004DA583 /* KingfisherSVG in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +134,7 @@
 		117C54342E7F2FCA004DA583 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				117C545A2E818137004DA583 /* FileManager */,
 				117C543C2E7F54A7004DA583 /* Keychain */,
 				117C54352E7F2FD9004DA583 /* StorageObject.swift */,
 				117C54322E7F2FA6004DA583 /* StorageService.swift */,
@@ -151,6 +158,22 @@
 				117C544A2E8090F5004DA583 /* CurrencyRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		117C54572E8171D9004DA583 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				117C54582E8171DE004DA583 /* PullHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		117C545A2E818137004DA583 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				117C545B2E81814D004DA583 /* FileManager.swift */,
+			);
+			path = FileManager;
 			sourceTree = "<group>";
 		};
 		1180FC3F2D9AE0610044CD7C = {
@@ -205,6 +228,7 @@
 		1180FC602D9AE4F30044CD7C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				117C54572E8171D9004DA583 /* Views */,
 				11F78B2C2E79F85B0073F0CD /* Models */,
 				1180FC612D9AE4FF0044CD7C /* Favorites */,
 				1180FC5F2D9AE4E70044CD7C /* Home */,
@@ -382,6 +406,7 @@
 				119BE2E42E7CA43F00039379 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				119BE2E72E7CA6D600039379 /* XCLocalSwiftPackageReference "SwopAPI" */,
 				117C542C2E7F2EDF004DA583 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				117C54542E8148E5004DA583 /* XCRemoteSwiftPackageReference "KingfisherSVG" */,
 			);
 			productRefGroup = 1180FC492D9AE0610044CD7C /* Products */;
 			projectDirPath = "";
@@ -426,6 +451,7 @@
 				119BE2EF2E7D922200039379 /* NetworkInterceptorProvider.swift in Sources */,
 				117C54332E7F2FAC004DA583 /* StorageService.swift in Sources */,
 				117C54312E7F2F03004DA583 /* KeychainService.swift in Sources */,
+				117C54592E8171E3004DA583 /* PullHeaderView.swift in Sources */,
 				11F78B3B2E7AE42B0073F0CD /* HomeCoordinator.swift in Sources */,
 				11F78B4D2E7C85290073F0CD /* GraphQLService.swift in Sources */,
 				11F78B402E7AE50D0073F0CD /* ViewModel.swift in Sources */,
@@ -434,6 +460,7 @@
 				1180FC632D9AE53A0044CD7C /* HomeViewController.swift in Sources */,
 				117C54422E807356004DA583 /* FXError.swift in Sources */,
 				11F78B1E2E79CBCC0073F0CD /* UICollectionView+register.swift in Sources */,
+				117C545C2E81814E004DA583 /* FileManager.swift in Sources */,
 				1180FC6D2DBF0C180044CD7C /* CurrencyNetworkModel.swift in Sources */,
 				11F78B282E79F5CF0073F0CD /* UIColor+AppColor.swift in Sources */,
 				11F78B4A2E7C59C50073F0CD /* CollectionAdapter.swift in Sources */,
@@ -679,6 +706,14 @@
 				minimumVersion = 24.0.0;
 			};
 		};
+		117C54542E8148E5004DA583 /* XCRemoteSwiftPackageReference "KingfisherSVG" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/octree/KingfisherSVG.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		119BE2E42E7CA43F00039379 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -694,6 +729,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 117C542C2E7F2EDF004DA583 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		117C54552E8148E5004DA583 /* KingfisherSVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 117C54542E8148E5004DA583 /* XCRemoteSwiftPackageReference "KingfisherSVG" */;
+			productName = KingfisherSVG;
 		};
 		119BE2E52E7CA43F00039379 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
