@@ -9,9 +9,12 @@ import Foundation
 
 final class ErrorHandler {
     func mapError(_ error: Error) -> FXError {
+        if error is FXError {
+            return error as! FXError
+        }
         let nsError = error as NSError
         switch nsError.code {
-        case NSURLErrorNotConnectedToInternet:
+        case 2, NSURLErrorNotConnectedToInternet:
             return .noInternet
         case NSURLErrorTimedOut:
             return .timeout

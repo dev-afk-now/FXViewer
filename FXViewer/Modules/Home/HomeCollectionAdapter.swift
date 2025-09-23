@@ -16,12 +16,15 @@ class HomeCollectionAdapter: CollectionAdapter<HomeSection, CurrencyModel> {
     
     private weak var pullDelegate: PullProgressDelegate?
     private var hasUserScrolled = false
+    private let cellAction: (String) -> ()
     
     init(
         collectionView: UICollectionView,
-        pullDelegate: PullProgressDelegate? = nil
+        pullDelegate: PullProgressDelegate? = nil,
+        _ cellAction: @escaping (String) -> () = {_ in }
     ) {
         self.pullDelegate = pullDelegate
+        self.cellAction = cellAction
         super.init(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
@@ -60,5 +63,28 @@ extension HomeCollectionAdapter: UICollectionViewDelegate {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pullDelegate?.scrollDidEnd()
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        contextMenuConfigurationForItemAt indexPath: IndexPath,
+        point: CGPoint
+    ) -> UIContextMenuConfiguration? {
+        
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil
+        ) { [unowned self] _ in
+            guard let item = dataSource.itemIdentifier(for: indexPath) else {
+                return UIMenu()
+            }
+            let favorite = UIAction(
+                title: item.isFavorite ? "Remove" : "Add",
+                image: UIImage(systemName: item.isFavorite ? "star.fill" : "star")
+            ) { [unowned self] _ in
+                cellAction(item.code)
+            }
+            return UIMenu(title: .empty, children: [favorite])
+        }
     }
 }

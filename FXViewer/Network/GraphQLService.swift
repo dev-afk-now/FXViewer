@@ -31,13 +31,13 @@ final class GraphQLService: GraphQLServiceProtocol {
         let query = CurrenciesQuery()
         client.fetch(
             query: query,
-            cachePolicy: .fetchIgnoringCacheData,
+            cachePolicy: .fetchIgnoringCacheCompletely,
             queue: serialQueue
         ) { result in
-            print(result)
             switch result {
             case .success(let success):
                 guard let unwrapped = success.data else {
+                    completion(.failure(FXError.serverUnavailable))
                     return
                 }
                 completion(

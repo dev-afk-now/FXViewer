@@ -1,14 +1,14 @@
 //
-//  CurrencyCell.swift
+//  FavoriteCell.swift
 //  FXViewer
 //
-//  Created by Nik Dub on 10.04.2025.
+//  Created by Nik Dub on 9/23/25.
 //
 
 import UIKit
 import KingfisherSVG
 
-class CurrencyCell: UICollectionViewCell, Configurable {
+class FavoriteCell: UICollectionViewCell, Configurable {
     
     // MARK: - Private properties -
     
@@ -50,8 +50,22 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         return $0
     }(UIImageView())
     
+    private lazy var trashcanImageView: UIImageView = {
+        $0.image = UIImage(systemName: "trash")
+        $0.layer.cornerRadius = 6
+        $0.layer.masksToBounds = true
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        $0.backgroundColor = .lightGray
+        $0.clipsToBounds = true
+        $0.backgroundColor = .systemRed
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIImageView())
+    
     private lazy var nameLabel: UILabel = {
         $0.textColor = .appColor(.titleLight)
+        $0.minimumScaleFactor = 0.75
         $0.numberOfLines = 1
         $0.font = .systemFont(ofSize: 17, weight: .semibold)
         $0.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -90,34 +104,6 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         setupConstrains()
     }
     
-    // MARK: - Internal properties -
-    
-    func configure(with model: CurrencyModel) {
-        if model.isFavorite {
-            nameLabel.attributedText = makeImagedText(
-                imageName: "star.fill",
-                model.name,
-                font: nameLabel.font
-            )
-        } else {
-            nameLabel.text = model.name
-        }
-        codeLabel.text = model.code
-        priceLabel.text = model.price.formatCurrency(currency: model.code)
-        guard let url = URL(string: model.image) else {
-            return
-        }
-        flagImageView.kf.setImage(
-            with: url,
-            placeholder: nil,
-            options: [
-                .cacheOriginalImage,
-                .processor(SVGProcessor.default),
-                .cacheSerializer(SVGCacheSerializer.default)
-            ]
-        )
-    }
-    
     // MARK: - Private methods -
     
     private func setupConstrains() {
@@ -128,6 +114,7 @@ class CurrencyCell: UICollectionViewCell, Configurable {
         stackView.addArrangedSubview(flagImageView)
         stackView.addArrangedSubview(titleStackView)
         stackView.addArrangedSubview(priceLabel)
+        stackView.addArrangedSubview(trashcanImageView)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(
@@ -170,11 +157,28 @@ class CurrencyCell: UICollectionViewCell, Configurable {
             flagImageView.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
+    func configure(with model: CurrencyModel) {
+        self.nameLabel.text = model.name
+        self.codeLabel.text = model.code
+        self.priceLabel.text = model.price.formatCurrency(currency: model.code)
+        guard let url = URL(string: model.image) else {
+            return
+        }
+        flagImageView.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .cacheOriginalImage,
+                .processor(SVGProcessor.default),
+                .cacheSerializer(SVGCacheSerializer.default)
+            ]
+        )
+    }
 }
 
-// MARK: - Private extensions
 
-private extension CurrencyCell {
+extension FavoriteCell {
     enum Constants {
         static let verticalInset: CGFloat = 2
         static let horizontalInset: CGFloat = 20

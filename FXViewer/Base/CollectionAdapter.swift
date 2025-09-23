@@ -14,7 +14,7 @@ class CollectionAdapter<Section: Hashable, Item: Hashable>: NSObject {
     typealias SelectionHandler = (Item) -> Void
     
     private let collectionView: UICollectionView
-    private var dataSource: DataSource
+    private(set) var dataSource: DataSource
     
     init(
         collectionView: UICollectionView,

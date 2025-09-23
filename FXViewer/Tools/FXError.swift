@@ -14,4 +14,21 @@ enum FXError: Error {
     case serverUnavailable
     case badResponse
     case unknown
+    
+    var message: String {
+        switch self {
+        case .propagated(let error):
+            error.localizedDescription
+        case .dataError, .badResponse, .connectionLost:
+            "Couldn't fetch response"
+        case .noInternet:
+            "Internet connection is off, try again later"
+        case .timeout:
+            "Request reached timeout time"
+        case .serverUnavailable:
+            "Server is unavailable"
+        case .unknown:
+            "Unknown error"
+        }
+    }
 }

@@ -12,39 +12,22 @@ enum HomeViewModelState: ViewModelState, Equatable {
     case idle
     case loading
     case updated([CurrencyModel])
+    case offline([CurrencyModel])
+    case error(String)
 }
 
 final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     
-    // MARK: - Published properties -
-    
-    @Published private(set) var query: String = .empty
-//    @Published var repositoryItems: [SearchItemResponse] = []
-    @Published var hasToMoreItemsToLoad: Bool = false
-//    @Published var limitExceededResponse: ErrorResponse?
-    @Published var shouldShowAlert: Bool = false
-    
     // MARK: - Private properties
     
     private unowned let coordinator: HomeCoordinator
-    private let repository: CurrencyRepository
-    private var isFetchingMore: Bool = false
-    private var task: Task<Void, Error>?
+    private let repository: CurrencyRepository<CurrencyRepositoryState>
     
-    private let debounceInterval: TimeInterval = 1
-    
-    private var totalRepositoryCount = 0
-    private let itemsPerPage = 30 /// Provided default value in docs
-//    private var nextPageIndex: Int {
-//        guard repositoryItems.count > .zero else { return 1 }
-//        return repositoryItems.count / itemsPerPage + 1
-//    }
-    
-    // MARK: - Lifecycle
+    // MARK: - Init
     
     init(
         coordinator: HomeCoordinator,
-        repository: CurrencyRepository = CurrencyRepositoryImpl()
+        repository: CurrencyRepository<CurrencyRepositoryState>
     ) {
         self.repository = repository
         self.coordinator = coordinator
@@ -52,97 +35,39 @@ final class HomeViewModel: BaseViewModel<HomeViewModelState> {
     }
     
     override func start() {
-        
-//        $query
-//            .debounce(for: .seconds(debounceInterval), scheduler: DispatchQueue.main)
-//            .filter { $0.count >= 3 || $0.isEmpty }
-//            .removeDuplicates()
-//            .sink
-//        { newValue in
-//            self.repositoryItems = []
-//            self.totalRepositoryCount = .zero
-//            self.hasToMoreItemsToLoad = false
-//            if newValue.isEmpty {
-//                self.updateState(newValue: .idle)
-//                self.task?.cancel()
-//                return
-//            }
-//            
-//            self.updateState(newValue: .loading)
-//            print("SET LOADING")
-//            self.updateRepositoryList()
-//        }
-//        .store(in: &cancellables)
-        self.updateState(newValue: .loading)
-        self.repository.getCurrencyList { [weak self] result in
-            switch result {
-            case .success(let success):
-                self?.updateState(newValue: .updated(success))
-                //                self?.handleResponse(result)
-            case .failure(let failure):
-                self?.updateState(newValue: .idle)
-            }
-        }
+        repository.$state
+            .sink(receiveValue: handleRepositoryUpdate)
+            .store(in: &cancellables)
+        refresh()
     }
     
-    func fetchMoreRepositories() {
-        if isFetchingMore { return }
-        isFetchingMore.toggle()
-//        updateRepositoryList(page: nextPageIndex)
+    func refresh() {
+        updateState(newValue: .loading)
+        repository.fetchCurrencyList()
     }
     
-//    func openDetailed(model: CurrencyModel) {
-//        coordinator.openDetiled(model)
-//    }
+    func switchCurrencyAsFavorite(_ code: String) {
+        repository.switchCurrencyAsFavorite(by: code)
+    }
+    
+    func openFavorites() {
+        coordinator.openFavorites()
+    }
 }
 
 // MARK: - Private extension
 
 private extension HomeViewModel {
-    func updateRepositoryList(page: Int = 1) {
-//        task?.cancel()
-//        task = Task { @MainActor [weak self] in
-//            try Task.checkCancellation()
-//            guard let self else { return }
-//            do {
-//                let response = try await self.apiClient.searchQuery(self.query, page)
-//                try Task.checkCancellation()
-//                self.handleResponse(response)
-//            } catch NetworkError.requestLimitExceeded(let response) {
-//                self.isFetchingMore = false
-//                self.query = .empty
-//                self.limitExceededResponse = response
-//                self.shoudlShowAlert = true
-//                self.updateState(newValue: .started)
-//            } catch let error {
-//                if Task.isCancelled {
-//                    print("SET CANCELD")
-//                    isFetchingMore = false
-//                    self.hasToMoreItemsToLoad = false
-//                    self.updateState(newValue: query.count < 3  ? .idle : .loading )
-//                } else {
-//                    print("SET FAILED")
-//                    isFetchingMore = false
-//                    self.hasToMoreItemsToLoad = false
-//                    self.updateState(newValue: .failed)
-//                }
-//                print(error)
-//            }
-//        }
-    }
-    
-    func handleResponse(_ response: Result<[CurrencyModel], FXError>) {
-        switch response {
-        case .success(let responseItems):
-            break
-        case .failure(let error):
-            break
+    func handleRepositoryUpdate(_ state: CurrencyRepositoryState) {
+        switch state {
+        case .idle:
+            updateState(newValue: .idle)
+        case .updated(let list):
+            updateState(newValue: .updated(list))
+        case .error(let fXError):
+            updateState(newValue: .error(fXError.message))
+        case .cached(let cached):
+            updateState(newValue: .offline(cached))
         }
-        print("SET LOADED")
-//        repositoryItems += response.items
-//        totalRepositoryCount = response.totalCount
-//        hasToMoreItemsToLoad = totalRepositoryCount > repositoryItems.count
-//        isFetchingMore = false
-//        updateState(newValue: .idle)
     }
 }

@@ -10,14 +10,18 @@ import Combine
 
 final class HomeViewController: UIViewController {
     
-    // MARK: - Private properties -
+    // MARK: - Private properties
     
     private let viewModel: HomeViewModel
     private var cancellables = Set<AnyCancellable>()
     
     private var collectionView: UICollectionView!
     private var collectionAdapter: HomeCollectionAdapter!
-    private lazy var navigationBar: PullHeaderView = {
+    private var isInError = false
+    
+    // MARK: - UI properties
+    
+    private lazy var pullToRefreshView: PullHeaderView = {
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "Pull to update"
@@ -25,14 +29,14 @@ final class HomeViewController: UIViewController {
         $0.textColor = .gray
         $0.textAlignment = .center
         $0.onAction = { [unowned self] in
-            self.viewModel.start()
+            self.viewModel.refresh()
         }
         $0.alpha = .zero
         return $0
     }(PullHeaderView())
     
     private lazy var emptyImageView: UIImageView = {
-        $0.image = UIImage(named: "fxviewerlogo")!
+        $0.image = .appImage(.logo)
         $0.contentMode = .scaleAspectFit
         $0.isHidden = true
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -42,9 +46,18 @@ final class HomeViewController: UIViewController {
         return $0
     }(UIImageView())
     
-    private let refreshControl = UIRefreshControl()
+    private var leftBarLabel: UIBarButtonItem {
+        let item = UIBarButtonItem(
+            image: UIImage(systemName: "icloud.slash"),
+            style: .plain,
+            target: self,
+            action: nil
+        )
+        item.tintColor = .gray
+        return item
+    }
     
-    // MARK: - Init -
+    // MARK: - Init
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -55,7 +68,7 @@ final class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle -
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +77,27 @@ final class HomeViewController: UIViewController {
         initialSetup()
     }
     
+    // MARK: - Private methods
+    
     private func initialSetup() {
         view.backgroundColor = .appColor(.background)
-        title = "Currencies"
+        configureNavgationBar()
         viewModel.$state
             .sink(receiveValue: handleStateUpdate)
             .store(in: &cancellables)
         viewModel.start()
+    }
+    
+    private func configureNavgationBar() {
+        title = "Currencies"
+        let rightButton = UIBarButtonItem(
+            image: UIImage(systemName: "star"),
+            style: .plain,
+            target: self,
+            action: #selector(favoritesTapped)
+        )
+        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.largeTitleDisplayMode = .automatic
     }
     
     private func configureCollectionView() {
@@ -85,8 +112,10 @@ final class HomeViewController: UIViewController {
         collectionView.register(for: CurrencyCell.self)
         collectionAdapter = HomeCollectionAdapter(
             collectionView: collectionView,
-            pullDelegate: navigationBar
-        )
+            pullDelegate: pullToRefreshView
+        ) { [weak self] in
+            self?.viewModel.switchCurrencyAsFavorite($0)
+        }
         collectionView.delegate = collectionAdapter
     }
     
@@ -115,10 +144,8 @@ final class HomeViewController: UIViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-    // MARK: - Private methods -
-    
     private func setupConstrains() {
-        collectionView.addSubview(navigationBar)
+        collectionView.addSubview(pullToRefreshView)
         view.addSubview(collectionView)
         view.addSubview(emptyImageView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -133,43 +160,103 @@ final class HomeViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            navigationBar.topAnchor.constraint(equalTo: collectionView.topAnchor),
-            navigationBar.heightAnchor.constraint(equalToConstant: 25),
-//            navigationBar.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
-//            navigationBar.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
-            navigationBar.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor)
+            pullToRefreshView.topAnchor.constraint(equalTo: collectionView.topAnchor),
+            pullToRefreshView.heightAnchor.constraint(equalToConstant: 25),
+            pullToRefreshView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor)
         ])
-//        view.sendSubviewToBack(emptyImageView)
         view.applyBottomGradient()
     }
     
-    func showLoading() {
+    private func showLoading() {
         collectionAdapter.applySnapshot(
             sections: [.skeleton],
             itemsBySection: [.skeleton: CurrencyModel.placeholderList]
         )
     }
     
-    func updateDataSource(_ items: [CurrencyModel]) {
-        collectionView.setContentOffset(.zero, animated: false)
-        collectionAdapter.applySnapshot(sections: [.main], itemsBySection: [.main: items])
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned self] in
-            collectionView.setContentOffset(.zero, animated: false)
-        }
+    private func updateDataSource(_ items: [CurrencyModel]) {
+        collectionAdapter.applySnapshot(
+            sections: [.main],
+            itemsBySection: [.main: items]
+        )
     }
     
-    private func handleStateUpdate(_ state: HomeViewModelState) -> () {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.emptyImageView.isHidden = state != .idle
+    private func showErrorAlert(with text: String) {
+        let alert = UIAlertController(
+            title: "Ooops",
+            message: text,
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "Ok",
+                style: .default,
+                handler: nil
+            )
+        )
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func setOfflineViewState(
+        _ value: Bool,
+        timestamp: String?
+    ) {
+        navigationItem.leftBarButtonItem = value ? leftBarLabel : nil
+        guard let timestamp else {
+            pullToRefreshView.text = "Pull to refresh"
+            return
         }
+        pullToRefreshView.text = value
+        ? "Last update:" + " " + timestamp
+        : "Pull to refresh"
+    }
+    
+    private func showEmptyState(_ value: Bool) {
+        emptyImageView.isHidden = !value
+    }
+    
+    
+    
+    // MARK: - Actions
+    
+    @objc private func favoritesTapped() {
+        viewModel.openFavorites()
+    }
+}
+
+// MARK: - Private extensions
+
+extension HomeViewController {
+    private func handleStateUpdate(_ state: HomeViewModelState) -> () {
         DispatchQueue.main.async { [unowned self] in
+            showEmptyState(false)
             switch state {
             case .idle:
-                updateDataSource([])
+                showEmptyState(true)
             case .loading:
                 showLoading()
             case .updated(let elements):
                 updateDataSource(elements)
+                setOfflineViewState(
+                    false,
+                    timestamp: nil
+                )
+                showEmptyState(elements.isEmpty)
+            case .error(let message):
+                showEmptyState(true)
+                showErrorAlert(with: message)
+                setOfflineViewState(
+                    true,
+                    timestamp: nil
+                )
+                updateDataSource([])
+            case .offline(let list):
+                showEmptyState(list.isEmpty)
+                setOfflineViewState(
+                    true,
+                    timestamp: list.first?.date
+                )
+                updateDataSource(list)
             }
         }
     }

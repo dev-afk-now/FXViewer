@@ -20,12 +20,19 @@ protocol DTOMappable {
 
 extension LatestEuroQuery.Data.Latest: DTOMappable {
     func toDomain() -> LatestNetworkModel {
-        LatestNetworkModel(code: self.quoteCurrency, price: self.quote)
+        LatestNetworkModel(
+            code: self.quoteCurrency,
+            price: self.quote,
+            date: self.date
+        )
     }
 }
 
 extension CurrenciesQuery.Data.Currency: DTOMappable {
     func toDomain() -> CurrencyNetworkModel {
-        CurrencyNetworkModel(code: self.code, name: self.name)
+        CurrencyNetworkModel(
+            code: self.code,
+            name: self.name
+        )
     }
 }

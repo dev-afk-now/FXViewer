@@ -1,42 +1,37 @@
 //
-//  HomeCoordinator.swift
+//  FavoritesCoordinator.swift
 //  FXViewer
 //
-//  Created by Nik Dub on 9/17/25.
+//  Created by Nik Dub on 9/23/25.
 //
 
 import UIKit
 
-class HomeCoordinator: Coordinator {
+class FavoritesCoordinator: Coordinator {
     unowned var navigationController: UINavigationController
     var parentCoordinator: Coordinator
     var childCoordinators: [Coordinator] = []
-    private let repository = CurrencyRepositoryImpl()
+    private let repository: CurrencyRepository<CurrencyRepositoryState>
     
     init(
         navigationController: UINavigationController,
-        parentCoordinator: Coordinator
+        parentCoordinator: Coordinator,
+        repository: CurrencyRepository<CurrencyRepositoryState>
     ) {
         self.navigationController = navigationController
         self.parentCoordinator = parentCoordinator
+        self.repository = repository
     }
     
     func start() {
-        let viewModel = HomeViewModel(coordinator: self, repository: repository)
-        let view = HomeViewController(viewModel: viewModel)
+        let viewModel = FavoritesViewModel(coordinator: self, repository: repository)
+        let view = FavoritesViewController(viewModel: viewModel)
         navigationController.pushViewController(view, animated: true)
     }
     
-    func back() {}
-    
-    func openFavorites() {
-        let favoritesCoordinator = FavoritesCoordinator(
-            navigationController: navigationController,
-            parentCoordinator: self,
-            repository: repository
-        )
-        self.childCoordinators.append(favoritesCoordinator)
-        favoritesCoordinator.start()
+    func back() {
+        parentCoordinator.childDidFinish(self)
+        navigationController.popViewController(animated: true)
     }
     
     func childDidFinish(_ child: Coordinator?) {

@@ -7,7 +7,7 @@ public class CurrenciesQuery: GraphQLQuery {
   public static let operationName: String = "Currencies"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query Currencies { currencies { __typename code name numericCode decimalDigits active } }"#
+      #"query Currencies { currencies { __typename code name } }"#
     ))
 
   public init() {}
@@ -35,16 +35,10 @@ public class CurrenciesQuery: GraphQLQuery {
         .field("__typename", String.self),
         .field("code", String.self),
         .field("name", String.self),
-        .field("numericCode", String?.self),
-        .field("decimalDigits", Int.self),
-        .field("active", Bool.self),
       ] }
 
       public var code: String { __data["code"] }
       public var name: String { __data["name"] }
-      public var numericCode: String? { __data["numericCode"] }
-      public var decimalDigits: Int { __data["decimalDigits"] }
-      public var active: Bool { __data["active"] }
     }
   }
 }

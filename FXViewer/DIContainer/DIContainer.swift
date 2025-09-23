@@ -10,7 +10,9 @@ import Apollo
 
 final class DIContainer {
     static let shared = DIContainer()
-    private(set) lazy var graphQLService: GraphQLServiceProtocol = GraphQLService(client: apolloClient)
+    private(set) lazy var graphQLService: GraphQLServiceProtocol = GraphQLService(
+        client: apolloClient
+    )
     let storage: Storage
     private let keychainService: Storage
     

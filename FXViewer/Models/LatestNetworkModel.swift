@@ -8,4 +8,5 @@
 struct LatestNetworkModel {
     let code: String
     let price: String
+    let date: String
 }

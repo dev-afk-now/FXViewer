@@ -15,8 +15,8 @@ final class KeychainDecorator: Storage {
     
     func getValue<T>(for key: String) -> T? where T : StorageObject {
         if key == tokenStorageKey,
-           let obfuscated: [UInt8] = storage.getValue(for: key),
-           let revealed = APIKeyObfuscated.reveal(obfuscated) {
+           let obfuscated: ByteArray = storage.getValue(for: key),
+           let revealed = APIKeyObfuscated.reveal(obfuscated.values) {
             return (revealed as StorageObject) as? T
         } else {
             return storage.getValue(for: key)
@@ -36,9 +36,9 @@ final class KeychainDecorator: Storage {
     }
     
     func prepareIfNeeded() {
-        defer { APIKeyObfuscated.clear()}
-        guard let existing: [UInt8] = storage.getValue(for: tokenStorageKey) else {
-            set(APIKeyObfuscated.obfuscatedBytes, for: tokenStorageKey)
+        defer { APIKeyObfuscated.clear() }
+        guard let existing: ByteArray = storage.getValue(for: tokenStorageKey) else {
+            set(ByteArray(APIKeyObfuscated.obfuscatedBytes), for: tokenStorageKey)
             return
         }
     }

@@ -13,9 +13,11 @@ struct CurrencyModel: Codable, Hashable {
     let code: String
     let price: String
     let image: String
+    let date: String
     var isFavorite = false
     
     func hash(into hasher: inout Hasher) {
+        hasher.combine(isFavorite)
         hasher.combine(id)
     }
     
@@ -30,7 +32,8 @@ extension CurrencyModel {
             name: .empty,
             code: .empty,
             price: .empty,
-            image: .empty
+            image: .empty,
+            date: .empty
         )
     }
     

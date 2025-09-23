@@ -21,10 +21,10 @@ final class FileManagerService: Storage {
         }
         do {
             let data = try Data(contentsOf: url)
-            let currencies = T(from: data)
-            return currencies
+            let model = T(from: data)
+            return model
         } catch {
-            print("Failed to load currencies: \(error.localizedDescription)")
+            print("Failed to load: \(error.localizedDescription)")
             return nil
         }
     }
@@ -37,7 +37,7 @@ final class FileManagerService: Storage {
         do {
             try data.write(to: url, options: [.atomic])
         } catch {
-            print("Failed to save currencies: \(error.localizedDescription)")
+            print("Failed to save: \(error.localizedDescription)")
         }
     }
     
