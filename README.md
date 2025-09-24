@@ -34,7 +34,7 @@ FXViewer is an iOS application designed to display currency exchange rates with 
 - Skeleton with shimmer animation for loading state.
 - Clean UI with emphasis on clarity and quick access to important information.
 
-## Key Features.
+## Key Features
 - Favorites functionality.
 - Long press / context menu for marking currencies as favorite.
 - `Kingfisher + KingfisherSVG` for flags.
@@ -52,7 +52,7 @@ FXViewer is an iOS application designed to display currency exchange rates with 
 
 ## App Structure and Major Components
 - `Service/Repository` — data layer access.
-- `Service/Storage` — local caching via FileManager.
+- `Service/Storage` — storage-related interfaces and implementations(e.g. `FileManager`, `Keychain`).
 - `DIContainer` — resolves dependencies for modules.
 - `GraphQL` — scheme, queries.
 - `Network` — request layer abstraction (Apollo).
@@ -61,5 +61,5 @@ FXViewer is an iOS application designed to display currency exchange rates with 
 - `Resources` — assets, colors.
 - `Tools` — helpers, formatters, utility classes.
 - `Extensions` — custom extensions for Swift built-in classes.
-- `Models` — data models (e.g., CurrencyModel).
+- `Models` — data model.
 - `Modules` — feature modules.
