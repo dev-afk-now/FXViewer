@@ -51,7 +51,7 @@ FXViewer is an iOS application designed to display currency exchange rates with 
 ---
 
 ## App Structure and Major Components
-- `Service/Repository` — data layer access.
+- `Service/Repository` — data access and management entity.
 - `Service/Storage` — storage-related interfaces and implementations(e.g. `FileManager`, `Keychain`).
 - `DIContainer` — resolves dependencies for modules.
 - `GraphQL` — scheme, queries.
