@@ -16,9 +16,7 @@ final class CurrencyRepositoryImpl: CurrencyRepository<CurrencyRepositoryState> 
     private let storage: Storage
     private var currenciesDict = OrderedDictionary<String, CurrencyModel>()
     private var list: [CurrencyModel] = []
-    private var favoriteCodes: [String] = [] {
-        didSet { print(favoriteCodes) }
-    }
+    private var favoriteCodes: [String] = []
     
     // MARK: - Init -
     

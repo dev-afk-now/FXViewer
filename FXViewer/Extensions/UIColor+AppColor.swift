@@ -12,7 +12,6 @@ enum AppColor: String {
     case containerDark
     case subtitleDark
     case titleLight
-    case navigationDark
 }
 
 extension UIColor {

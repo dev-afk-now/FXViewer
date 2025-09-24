@@ -43,7 +43,6 @@
 		119BE2CD2E7C98B400039379 /* latestQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 119BE2CC2E7C98A200039379 /* latestQuery.graphql */; };
 		119BE2E62E7CA43F00039379 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 119BE2E52E7CA43F00039379 /* Apollo */; };
 		119BE2E92E7CA6D600039379 /* SwopAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 119BE2E82E7CA6D600039379 /* SwopAPI */; };
-		119BE2EA2E7D856400039379 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1180FC562D9AE0640044CD7C /* LaunchScreen.storyboard */; };
 		119BE2ED2E7D8EDF00039379 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2EC2E7D8ED400039379 /* AuthInterceptor.swift */; };
 		119BE2EF2E7D922200039379 /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2EE2E7D921800039379 /* NetworkInterceptorProvider.swift */; };
 		119BE2F22E7D93D400039379 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119BE2F12E7D93D100039379 /* DIContainer.swift */; };
@@ -463,7 +462,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				119BE2EA2E7D856400039379 /* LaunchScreen.storyboard in Resources */,
 				119BE2CB2E7C952500039379 /* schema.graphqls in Resources */,
 				119BE2CD2E7C98B400039379 /* latestQuery.graphql in Resources */,
 				119BE2F42E7DA66F00039379 /* currenciesQuery.graphql in Resources */,

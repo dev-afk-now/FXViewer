@@ -11,6 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let window = UIWindow()
+    private var appCoordinator: AppCoordinator!
 
     func application(
         _ application: UIApplication,
@@ -21,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController.setNavigationBarHidden(false, animated: false)
         navigationController.navigationBar.prefersLargeTitles = true
         let appCoordinator = AppCoordinator(navigationController: navigationController)
+        self.appCoordinator = appCoordinator
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         appCoordinator.start()

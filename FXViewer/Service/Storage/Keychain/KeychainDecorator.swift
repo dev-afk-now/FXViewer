@@ -37,7 +37,7 @@ final class KeychainDecorator: Storage {
     
     func prepareIfNeeded() {
         defer { APIKeyObfuscated.clear() }
-        guard let existing: ByteArray = storage.getValue(for: tokenStorageKey) else {
+        guard let _: ByteArray = storage.getValue(for: tokenStorageKey) else {
             set(ByteArray(APIKeyObfuscated.obfuscatedBytes), for: tokenStorageKey)
             return
         }

@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritesCoordinator: Coordinator {
     unowned var navigationController: UINavigationController
-    var parentCoordinator: Coordinator
+    private unowned var parentCoordinator: Coordinator
     var childCoordinators: [Coordinator] = []
     private let repository: CurrencyRepository<CurrencyRepositoryState>
     

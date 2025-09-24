@@ -9,7 +9,7 @@ import UIKit
 
 class HomeCoordinator: Coordinator {
     unowned var navigationController: UINavigationController
-    var parentCoordinator: Coordinator
+    unowned var parentCoordinator: Coordinator
     var childCoordinators: [Coordinator] = []
     private let repository = CurrencyRepositoryImpl()
     

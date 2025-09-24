@@ -16,7 +16,7 @@ final class FavoritesViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     private var collectionView: UICollectionView!
-    private var collectionAdapter: HomeCollectionAdapter!
+    private var collectionAdapter: FavoritesCollectionAdapter!
     
     // MARK: - UI properties
     
@@ -51,6 +51,11 @@ final class FavoritesViewController: UIViewController {
         initialSetup()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancellables = []
+    }
+    
     // MARK: - Private methods
     
     private func initialSetup() {
@@ -70,9 +75,8 @@ final class FavoritesViewController: UIViewController {
         collectionView.contentInsetAdjustmentBehavior = .always
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.register(for: SkeletonCell.self)
         collectionView.register(for: CurrencyCell.self)
-        collectionAdapter = HomeCollectionAdapter(
+        collectionAdapter = FavoritesCollectionAdapter(
             collectionView: collectionView
         ) { [weak self] in
             self?.viewModel.removeCurrency($0)
@@ -83,6 +87,13 @@ final class FavoritesViewController: UIViewController {
     
     private func configureNavgationBar() {
         title = "Favorites"
+        let backButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain,
+            target: self,
+            action: #selector(backTapped)
+        )
+        navigationItem.leftBarButtonItem = backButton
         navigationItem.largeTitleDisplayMode = .never
     }
     
@@ -139,6 +150,12 @@ final class FavoritesViewController: UIViewController {
     
     private func setEmptyViewHidden(_ value: Bool) {
         emptyStateLabel.isHidden = value
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func backTapped() {
+        viewModel.backToHome()
     }
 }
 
