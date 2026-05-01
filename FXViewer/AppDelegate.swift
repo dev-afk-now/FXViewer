@@ -11,12 +11,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let window = UIWindow()
+    private var appCoordinator: AppCoordinator!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        let viewController = HomeViewController()
-        window.rootViewController = viewController
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
+        let navigationController = UINavigationController()
+        navigationController.additionalSafeAreaInsets = .zero
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.navigationBar.prefersLargeTitles = true
+        let appCoordinator = AppCoordinator(navigationController: navigationController)
+        self.appCoordinator = appCoordinator
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
+        appCoordinator.start()
         return true
     }
 }

@@ -1,0 +1,153 @@
+# Base quote path - calculation path from base currency to quote currency
+type BaseQuotePathType {
+  # Calculated quote of this path from base currency to quote currency
+  pathRate: BigDecimal! @deprecated
+
+  # Weight of this path in the calculation of the final rate
+  weight: Float! @deprecated
+
+  # Ordered list of rates used for this path, with source details
+  sourceRates: [SourceRateType!]! @deprecated
+}
+
+# Converted `amount` from `baseCurrency` to a `quoteCurrency` on a specific `date`.
+type ConvertedAmount {
+  baseCurrency: String!
+  quoteCurrency: String!
+  baseAmount: BigDecimal!
+  quoteAmount: BigDecimal!
+  date: Date!
+}
+
+# Currency meta data - ISO 4217
+type CurrencyType {
+  code: String!
+  numericCode: String
+  decimalDigits: Int!
+  name: String!
+  active: Boolean!
+}
+
+# The `Date` scalar type represents a date value as specified by [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+scalar Date
+
+# Quote for a specific date (optionally with meta)
+type DateQuote {
+  quote: BigDecimal!
+  date: Date!
+  meta: RateMetaType @deprecated
+}
+
+# The `DateTime` scalar type represents a date/time value as specified by [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+scalar DateTime
+
+# Rate fluctuation of a currency pair (`baseCurrency`/`quoteCurrency`) between two given dates
+type Fluctuation {
+  baseCurrency: String!
+  quoteCurrency: String!
+  dateFrom: Date!
+  dateTo: Date!
+  fluctuation: BigDecimal!
+  fluctuationPercent: BigDecimal!
+  rateFrom: Rate!
+  rateTo: Rate!
+}
+
+type Query {
+  # Returns the latest rates
+  latest(baseCurrency: String = "EUR", quoteCurrencies: [String!]): [Rate!]!
+
+  # Returns the rates for a specific date
+  historical(
+    date: Date!
+    baseCurrency: String = "EUR"
+    quoteCurrencies: [String!]
+  ): [Rate!]!
+
+  # Returns the time series of rates for the given date range
+  timeSeries(
+    dateFrom: Date!
+    dateTo: Date!
+    baseCurrency: String = "EUR"
+    quoteCurrencies: [String!]
+  ): [TimeSeries!]!
+
+  # Returns the rate fluctuation for the given date range
+  fluctuation(
+    dateFrom: Date!
+    dateTo: Date!
+    baseCurrency: String = "EUR"
+    quoteCurrencies: [String!]
+  ): [Fluctuation!]!
+
+  # Returns a converted amount for the given baseCurrency/quoteCurrency on a date
+  convert(
+    amount: BigDecimal!
+    baseCurrency: String!
+    quoteCurrencies: [String!]
+    date: Date
+  ): [ConvertedAmount!]!
+
+  # Returns meta data for currencies
+  currencies(
+    currencyCodes: [String!]
+    includeHistorical: Boolean
+  ): [CurrencyType!]!
+}
+
+# Exchange rate (`quote`) from `baseCurrency` to a `quoteCurrency` on a specific `date` (1 `baseCurrency` = `quote` `quoteCurrency`)
+type Rate {
+  baseCurrency: String!
+  quoteCurrency: String!
+  quote: BigDecimal!
+  date: Date!
+  meta: RateMetaType @deprecated
+}
+
+# Rate meta data - sources and calculation for rate
+type RateMetaType {
+  sourceShortNames: String @deprecated
+  sourceNames: String! @deprecated
+  sourceIds: [String!]! @deprecated
+  sources: [SourceType!]! @deprecated
+  rateType: String! @deprecated
+  calculated: Boolean! @deprecated
+  calculationShortDescription: String! @deprecated
+  calculationDescription: String! @deprecated
+  calculation: [BaseQuotePathType!]! @deprecated
+}
+
+# Source rate - rate directly obtained from currency source
+type SourceRateType {
+  sourceId: String! @deprecated
+  date: Date! @deprecated
+  baseCurrency: String! @deprecated
+  quoteCurrency: String! @deprecated
+
+  # The quote from the source
+  quote: BigDecimal! @deprecated
+
+  # If baseCurrency/quoteCurrency from the source were flipped for this calculation
+  flipped: Boolean! @deprecated
+
+  # Timestamp when the rate was fetched from the source
+  fetched: DateTime! @deprecated
+  source: SourceType! @deprecated
+}
+
+# Currency source information
+type SourceType {
+  id: String! @deprecated
+  shortName: String! @deprecated
+  name: String! @deprecated
+}
+
+# Exchange rate time series for a given currency pair
+type TimeSeries {
+  baseCurrency: String!
+  quoteCurrency: String!
+  quotes: [DateQuote!]!
+}
+
+# The `BigDecimal` scalar type represents signed fractional values with arbitrary precision.
+scalar BigDecimal
